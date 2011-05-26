@@ -1,0 +1,93 @@
+﻿package{
+	
+	import flash.display.MovieClip;
+	import flash.events.*;
+	public class Clock extends MovieClip
+	{
+		
+		private function setProps(obj:Object, ...args):void{
+			if(args.length%2==1)
+				 throw new Error();
+			for(var i = 0; i<args.length; i+=2){
+				obj[args[i]] = args[i+1];
+			}
+		}
+		
+		var theStage = null;
+		var clockHand = null;
+		var clockBack;
+		var listener = null;
+		function Clock(theStage, xLoc=0, yLoc=0){
+			
+			
+			clockBack = new ClockBack();
+			clockHand = new ClockHand();
+			setProps(clockHand, "x", xLoc,
+					 			 "y", yLoc);
+			setProps(clockBack, "x", xLoc,
+					 			 "y", yLoc);
+			theStage.addChild(clockBack);
+			theStage.addChild(clockHand);
+			
+			this.theStage = theStage;
+		}
+		
+		public function updateAngle(angle){
+			if(listener!=null){
+				theStage.removeEventListener(Event.ENTER_FRAME, listener);
+			}
+			
+			listener = function(){
+				theStage.setChildIndex(theStage.getChildByName(clockBack.name), theStage.numChildren-2);
+				theStage.setChildIndex(theStage.getChildByName(clockHand.name), theStage.numChildren-1);
+				drawSlice(angle);
+			}
+			theStage.addEventListener(Event.ENTER_FRAME, listener);
+			
+			listener();
+		}
+		
+		public function drawSlice(angle){
+			var startAngle = 90;
+			var graphics = clockHand.graphics;
+		 	graphics.clear();
+			graphics.beginFill(0x69c2e5);
+            var x = clockHand.width/2;
+			var y= clockHand.height/2+10;
+			var radius = 25;
+            // based on mc.drawWedge() - by Ric Ewing (ric@formequalsfunction.com) - version 1.3 - 6.12.2002
+            // adapted for AS3 Juan Ospina (piterwilson@gmail.com) - version 1.0 - 22.8.2008
+            var segAngle, theta, radangle, angleMid, segs, ax, ay, bx, by, cx, cy;
+	       graphics.moveTo(x, y);
+	       // Flash uses 8 segments per circle, to match that, we draw in a maximum
+	       // of 45 degree segments. First we calculate how many segments are needed
+	       // for our _arc.
+	       segs = Math.ceil(Math.abs(angle)/45);
+	       // Now calculate the sweep of each segment.
+	       segAngle = angle/segs;
+	       // The math requires radians rather than degrees. To convert from degrees
+	       // use the formula (degrees/180)*Math.PI to get radians.
+		   theta = -(segAngle/180)*Math.PI;
+		   
+	       // convert angle _startAngle to radians
+	       radangle = -(startAngle/180)*Math.PI;
+		
+	       // draw the curve in segments no larger than 45 degrees.
+	       if (segs>0) {
+		      ax = Math.cos(startAngle/180*Math.PI)*radius;
+		      ay = Math.sin(-startAngle/180*Math.PI)*radius;
+			  
+		      graphics.lineTo(x+ax, y+ay);
+		      for (var i:int = 0; i<segs; i++) {
+			     radangle += theta;
+			     angleMid = radangle-(theta/2);
+			     bx = Math.cos(radangle)*radius;
+			     by = Math.sin(radangle)*radius;
+			     cx = Math.cos(angleMid)*(radius/Math.cos(theta/2));
+			     cy = Math.sin(angleMid)*(radius/Math.cos(theta/2));
+				graphics.curveTo(x+cx, y+cy, x+bx, y+by);
+		      }
+		  graphics.lineTo(x, y);	      }
+		}
+	}
+}

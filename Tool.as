@@ -24,5 +24,9 @@
 			
 			this.theStage = theStage;
 		}
+		
+		function bringForward(){
+			theStage.setChildIndex(theStage.getChildByName(toolRect.name), theStage.numChildren-1);
+		}
 	}
 }

@@ -5,9 +5,18 @@ timer(10, function(){
 		clock.updateAngle(angle);
 }, 0)
 
-var toolbox:Toolbox = new Toolbox(stage);
+//var toolbox:Toolbox = new Toolbox(stage);
+toolbox = new Toolbox(stage);
 
 var msg:Message = new Message(stage, 50, 50, "I know you’re just a medical student but you’ve been \ntrained for this. If you need guidance I will help you.");
 
-var msg:Message = new Message(stage, 200, 400, "Let’s see, I need to do the ABC protocol.\n ‘A’ stands for Airway, and ‘B’ is for breathing.\n I have to make sure the windpipe is not blocked\nand the patient is able to breathe.\nWhat tool is used for listening to breathing?");
+var msg2:Message = new Message(stage, 200, 400, "Let’s see, I need to do the ABC protocol.\n ‘A’ stands for Airway, and ‘B’ is for breathing.\n I have to make sure the windpipe is not blocked\nand the patient is able to breathe.\nWhat tool is used for listening to breathing?");
 
+
+
+var button:ClickRegion = new ClickRegion(stage, 150, 100, 210, 150, function(){
+	trace("going");
+	msg.remove();
+	msg2.remove();
+	gotoAndStop(currentFrame+1);		
+});

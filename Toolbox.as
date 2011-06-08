@@ -10,12 +10,12 @@
 		var index;
 		var menu;
 		var menuBox;
-		var tools;
+		var tools = new Array();
 		var theStage;
 		function Toolbox(theStage){
 			
 			//create black box
-			var menuBox = new Canvas();
+			menuBox = new Canvas();
 			menuBox.graphics.beginFill(0x000000, 1);
 			menuBox.graphics.drawRect(0, 0, 800, 72);
 			menuBox.graphics.endFill();
@@ -26,22 +26,33 @@
 			theStage.addChild(menuBox); 
 			
 			//create Buttons
-			var index = new IndexButton();
+			index = new IndexButton();
 			index.x=700;
 			index.y=540;
 			theStage.addChild(index); 
 			
 			//create Buttons
-			var menu = new MenuButton();
+			menu = new MenuButton();
 			menu.x=700;
 			menu.y=570;
 			theStage.addChild(menu); 
 			
 			for(var i = 0; i<8; i++){
-				var tool = new Tool(theStage, i);
+				tools.push(new Tool(theStage, i));
 			}
 			
 			this.theStage = theStage;
 		}
+		public function bringForward(){
+			var myStage = theStage;
+			myStage.setChildIndex(myStage.getChildByName(menuBox.name), myStage.numChildren-1);
+			myStage.setChildIndex(myStage.getChildByName(menu.name), myStage.numChildren-1);
+			myStage.setChildIndex(myStage.getChildByName(index.name), myStage.numChildren-1);
+			for each(var tool in tools){
+				tool.bringForward();
+			}
+		}
+	
 	}	
+	
 }

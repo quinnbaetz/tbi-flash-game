@@ -1,9 +1,9 @@
-﻿include "../utility.as";
+﻿include "../../utility.as";
 
 
 var scene =3;
 var HEIGHT = 600;
-
+var toolbox;
 var lastFrame = 0;
 gotoAndStop(1);
 				
@@ -25,6 +25,13 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 			case 4:
 				trace("heli scene");
 				include "Scene_Heli.as";
+				break;
+			case 5:
+				trace("drawer scene");
+				include "Scene_Drawer.as";
+				break;
+			default:
+				trace(lastFrame);
 				break;
 			
 		}

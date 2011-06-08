@@ -5,6 +5,8 @@
 	public class Message extends MovieClip
 	{
 		
+		var theStage;
+		var msgBox;
 		function Message(theStage, x, y, str){
 			
 			//create text
@@ -19,7 +21,7 @@
 			
 			
 			//create black box
-			var msgBox = new Canvas();
+			msgBox = new Canvas();
 			msgBox.graphics.lineStyle(2, 0x2a3037);
 			msgBox.graphics.beginFill(0x6b6c68, .8);
 			msgBox.graphics.drawRoundRect(0, 0, textMsg.textWidth+30, textMsg.textHeight+30, 25, 25);
@@ -34,7 +36,11 @@
 			
 			msgBox.addChild(textMsg);
 			theStage.addChild(msgBox); 
-			
+			this.theStage = theStage;
+		}
+		
+		public function remove(){
+			theStage.removeChild(msgBox);
 		}
 	}
 }

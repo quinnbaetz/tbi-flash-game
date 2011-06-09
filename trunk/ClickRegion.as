@@ -9,7 +9,7 @@
 	public class ClickRegion extends MovieClip
 	{
 		private var my_button:SimpleButton;
-		
+		private var myStage;
 		function ClickRegion(stage, x, y, width, height, fun)
 		{
 			my_button=new SimpleButton();
@@ -20,8 +20,9 @@
 			my_button.hitTestState=drawArea(x, y, width, height);
 			
 			my_button.addEventListener(MouseEvent.CLICK,fun);
-			stage.addChild(my_button);
-		
+			myStage = stage;
+			myStage.addChild(my_button);
+			
 		}
 		
 		
@@ -32,6 +33,10 @@
 			cerchio.graphics.drawRect(x,y,width, height);
 			cerchio.graphics.endFill();
 			return(cerchio);
+		}
+		
+		public function remove(){
+			myStage.removeChild(my_button)
 		}
 		
 	}

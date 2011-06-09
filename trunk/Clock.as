@@ -2,6 +2,11 @@
 	
 	import flash.display.MovieClip;
 	import flash.events.*;
+	import fl.transitions.Tween;
+		import fl.transitions.easing.*;
+		import fl.transitions.TweenEvent;
+		
+		
 	public class Clock extends MovieClip
 	{
 		
@@ -12,7 +17,7 @@
 				obj[args[i]] = args[i+1];
 			}
 		}
-		
+		var angle = 360;
 		var theStage = null;
 		var clockHand = null;
 		var clockBack;
@@ -32,18 +37,26 @@
 			this.theStage = theStage;
 		}
 		
+		public function reduceAngle(angle){
+			var oldAngle = this.angle;
+			createTween(clockHand, "alpha", None.easeInOut, 0, -1, 10, function(){
+				updateAngle(oldAngle-angle);
+				createTween(clockHand, "alpha", None.easeInOut, 1);
+			});
+			
+		
+		}
 		public function updateAngle(angle){
+			this.angle = angle;
 			if(listener!=null){
 				theStage.removeEventListener(Event.ENTER_FRAME, listener);
 			}
-			
 			listener = function(){
 				theStage.setChildIndex(theStage.getChildByName(clockBack.name), theStage.numChildren-2);
 				theStage.setChildIndex(theStage.getChildByName(clockHand.name), theStage.numChildren-1);
 				drawSlice(angle);
 			}
 			theStage.addEventListener(Event.ENTER_FRAME, listener);
-			
 			listener();
 		}
 		
@@ -88,6 +101,27 @@
 				graphics.curveTo(x+cx, y+cy, x+bx, y+by);
 		      }
 		  graphics.lineTo(x, y);	      }
+		}
+		
+		var tweens:Array = new Array();
+		private function createTween(obj:Object, prop:String, type, endVal:int, startVal:int = -1, numFrames = 10, callBack:Function = null, useTime:Boolean = false):Tween{
+			if(startVal == -1)
+				startVal = obj[prop];
+			
+			var tempTween:Tween = new Tween(obj, prop, type, startVal, endVal, numFrames, useTime);
+			tweens.push(tempTween);
+			tempTween.addEventListener(TweenEvent.MOTION_FINISH, tweenEnd);
+			
+			function tweenEnd(e:TweenEvent):void{
+				tempTween.removeEventListener(TweenEvent.MOTION_FINISH, tweenEnd);
+				tweens.splice(tweens.indexOf(e.target), 1);
+				obj[prop] = endVal;
+				if(callBack!=null)
+					callBack(e);
+			
+			}
+			
+			return tempTween;
 		}
 	}
 }

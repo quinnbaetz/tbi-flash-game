@@ -29,7 +29,7 @@ var tween;
 var skipToNextScene = function(){
 	stage.removeChild(textMsg);
 	stage.removeEventListener(MouseEvent.CLICK, skipAhead);
-	gotoAndStop(currentFrame+1);
+	gotoAndStop("Scene_Heli");
 }
 
 var skipAhead = function(){

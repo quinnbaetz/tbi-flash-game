@@ -30,7 +30,7 @@ addChild(textMsg);
 var skipAhead = function(){
 		removeChild(textMsg);
 		stage.removeEventListener(MouseEvent.CLICK, arguments.callee);
-		gotoAndStop(currentFrame+1);
+		gotoAndStop("Scene_EMT");
 }
 
 stage.addEventListener(MouseEvent.CLICK, skipAhead);

@@ -7,6 +7,9 @@
 	{
 		var theStage;
 		var toolRect;
+		var empty = true;
+		public var toolName;
+		public var tool;
 		function Tool(theStage, index){
 			
 			//create black box
@@ -28,5 +31,42 @@
 		function bringForward(){
 			theStage.setChildIndex(theStage.getChildByName(toolRect.name), theStage.numChildren-1);
 		}
+		
+		public function addTool(name, tool){
+			this.toolName = name;
+			this.tool = tool;
+			tool.x = 3;
+			tool.y = 3;
+			tool.width = toolRect.width-6;
+			tool.height = toolRect.height-6;
+			toolRect.addChild(tool);
+			empty = false;
+		}
+		
+		public function removeTool(){
+			empty = true;
+			this.tool = null;
+			toolRect.removeChild(tool);
+		}
+		
+				
+		override public function get height():Number 
+		{
+			   return toolRect.height;
+		}
+		override public function get width():Number 
+		{
+			   return toolRect.width;
+		}
+		override public function get x():Number 
+		{
+			   return toolRect.x;
+		}
+		override public function get y():Number 
+		{
+			   return toolRect.y;
+		}
+	
+	
 	}
 }

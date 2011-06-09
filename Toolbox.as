@@ -7,10 +7,10 @@
 	{
 		
 		
-		var index;
-		var menu;
-		var menuBox;
-		var tools = new Array();
+		public var index;
+		public var menu;
+		public var menuBox;
+		public var tools = new Array();
 		var theStage;
 		function Toolbox(theStage){
 			
@@ -51,6 +51,19 @@
 			for each(var tool in tools){
 				tool.bringForward();
 			}
+		}
+		
+		public function getNextEmpty(){
+			for each(var tool in tools){
+				if(tool.empty){
+					return tool;
+				}
+			}
+		}
+		
+		public function addTool(name, toAdd){
+			var tool = getNextEmpty();
+			tool.addTool(name, toAdd);
 		}
 	
 	}	

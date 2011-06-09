@@ -5,6 +5,8 @@ var scene =3;
 var HEIGHT = 600;
 var toolbox;
 var lastFrame = 0;
+var timeline = 0;
+var clock;
 gotoAndStop(1);
 				
 stage.addEventListener(Event.ENTER_FRAME, function(){
@@ -29,6 +31,10 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 			case 5:
 				trace("drawer scene");
 				include "Scene_Drawer.as";
+				break;
+			case 6:
+				trace("EMT scene");
+				include "Scene_EMT.as";
 				break;
 			default:
 				trace(lastFrame);

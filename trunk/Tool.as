@@ -7,7 +7,7 @@
 	{
 		var theStage;
 		var toolRect;
-		var empty = true;
+		public var empty = true;
 		public var toolName;
 		public var tool;
 		function Tool(theStage, index){
@@ -32,8 +32,9 @@
 			theStage.setChildIndex(theStage.getChildByName(toolRect.name), theStage.numChildren-1);
 		}
 		
-		public function addTool(name, tool){
-			this.toolName = name;
+		public function addTool(toolName, tool){
+			trace(toolName);
+			this.toolName = toolName;
 			this.tool = tool;
 			tool.x = 3;
 			tool.y = 3;

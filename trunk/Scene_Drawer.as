@@ -1,17 +1,4 @@
-﻿import flash.display.Sprite;
-
-var addImage = function(className,x ,y){
-	
-	var ClassReference:Class = getDefinitionByName(className) as Class;
-	var instance:* = new ClassReference();
-	var myImage:Bitmap = new Bitmap(instance);
-	var sprite:Sprite = new Sprite();
-	sprite.x = x;
-	sprite.y = y;
-	sprite.addChild(myImage);
-	stage.addChild(sprite);
-	return sprite;
-}
+﻿
 
 var toolData = new Array({"className" : "cuff", "x": 350, "y" : 90},
 					 {"className" : "gauze", "x": 400, "y" : 350},
@@ -40,7 +27,7 @@ var createListener = function(tool, index){
 			 createTween(tool, "height", None.easeInOut, space.height-6);
 			 createTween(tool, "x", None.easeInOut, space.x+3);
 			 createTween(tool, "y", None.easeInOut, space.y+3, -1, 10, function(){
-				space.addTool(toolData[index], addImage(toolData[index].className, tool.x, tool.y));
+				space.addTool(toolData[index].className, addImage(toolData[index].className, tool.x, tool.y));
 				stage.removeChild(tool);
 				storeCount++;
 				trace(tools.length, storeCount);

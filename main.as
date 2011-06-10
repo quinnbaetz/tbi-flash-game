@@ -1,5 +1,5 @@
 ﻿include "../../utility.as";
-
+include "scripts/tbiUtilities.as";
 
 var scene =3;
 var HEIGHT = 600;
@@ -12,6 +12,7 @@ gotoAndStop(1);
 stage.addEventListener(Event.ENTER_FRAME, function(){
 	if(currentFrame!=lastFrame){
 		lastFrame = currentFrame;
+		trace(lastFrame);
 		switch(lastFrame){
 			case 1:
 				gotoAndStop(2);
@@ -35,6 +36,10 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 			case 6:
 				trace("EMT scene");
 				include "Scene_EMT.as";
+				break;
+			case 7:
+				trace("Torso scene");
+				include "Scene_Torso.as";
 				break;
 			default:
 				trace(lastFrame);

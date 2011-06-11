@@ -7,6 +7,11 @@ var toolbox;
 var lastFrame = 0;
 var timeline = 0;
 var clock;
+
+//used in heli scene
+var toolOrder = ["stethoscope", "cuff", "gauze"]
+var current = 0;
+////////////////////
 gotoAndStop(1);
 				
 stage.addEventListener(Event.ENTER_FRAME, function(){

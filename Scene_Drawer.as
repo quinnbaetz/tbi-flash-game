@@ -27,6 +27,7 @@ var createListener = function(tool, index){
 			 createTween(tool, "height", None.easeInOut, space.height-6);
 			 createTween(tool, "x", None.easeInOut, space.x+3);
 			 createTween(tool, "y", None.easeInOut, space.y+3, -1, 10, function(){
+				space = toolbox.getNextEmpty();
 				space.addTool(toolData[index].className, addImage(toolData[index].className, tool.x, tool.y));
 				stage.removeChild(tool);
 				storeCount++;

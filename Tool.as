@@ -46,8 +46,8 @@
 		
 		public function removeTool(){
 			empty = true;
-			this.tool = null;
 			toolRect.removeChild(tool);
+			this.tool = null;
 		}
 		
 				

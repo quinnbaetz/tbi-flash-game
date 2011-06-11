@@ -33,7 +33,6 @@ var skipToNextScene = function(){
 }
 
 var skipAhead = function(){
-	trace("Hi");
 	if(startedFade){
 		tween.stop();
 		tween = null;

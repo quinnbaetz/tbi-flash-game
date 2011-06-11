@@ -24,3 +24,14 @@ function forceToFront(obj){
 function remove(obj){
 	obj.parent.removeChild(obj);
 }
+
+function resetTools(){
+	for each(var tool in toolbox.tools){
+		if(!tool.empty){
+			var tName = tool.toolName;
+			var temp = addImage(tool.toolName, tool.tool.x, tool.tool.y);
+			tool.removeTool();
+			tool.addTool(tName, temp); 
+		}
+	}
+}

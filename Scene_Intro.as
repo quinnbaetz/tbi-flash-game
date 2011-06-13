@@ -1,6 +1,6 @@
 ﻿var toAdd = "Dispatcher: 9-1-1, what is your emergency?\n\n"+
 			"Caller: There’s been an accident! He’s not moving! We were biking and he fell and… Oh my gosh…\n\n"+
-			"Dispatcher: Sir, just try to remain calm; help is being dispatched to your location.";
+			"Dispatcher:  Ma’am, just try to remain calm; help is being dispatched to your location.";
 
 var index=0;
 

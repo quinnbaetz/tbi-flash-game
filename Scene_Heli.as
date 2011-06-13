@@ -1,10 +1,16 @@
 ﻿var lostTime = false;
 //can move functions into main if needed
-var mouseUpCallback = function(tool, x, y){
+var mouseUpCallback = function(tool, x, y, index){
 		var fun = function(e){
+			var tempx = tool.x;
+			var tempy = tool.y;
+			resetTools();
+			tool = toolbox.tools[index].tool;
+			tool.x = tempx;
+			tool.y = tempy;
 			createTween(tool, "x", Regular.easeInOut, x);
 			createTween(tool, "y", Regular.easeInOut, y, -1, 10, function(){
-				resetTools();
+				
 			});
 			msg2.remove();
 			gotoAndStop("Scene_Torso");
@@ -26,7 +32,7 @@ var switchAndTalk = function(tool, toolName){
 				speach = "That’s the ear thermometer, but\nthat’s not what we need right now.";
 				break;
 			case "cuff":
-				speach = "That’s blood pressure cuff, not\nthe tool you need right now.";
+				speach = "That’s the blood pressure cuff, not\nthe tool you need right now.";
 				break;
 			case "gauze":
 				speach = "That’s the roll of gauze… make\nsure you are using the right tool.";
@@ -35,7 +41,7 @@ var switchAndTalk = function(tool, toolName){
 				speach = "That’s the penlight, but we\nneed a different tool right now."
 				break; 
 			case "stethoscope":
-				speach = "That’s the stethoscope, not the tool you need right now."
+				speach = "That’s the stethoscope, not\n the tool you need right now."
 				break;
 		}
 		if(!lostTime){
@@ -66,11 +72,12 @@ var switchAndTalk = function(tool, toolName){
 		
 var configureTools = function(){
 	lostTime = false;
-	for each(tool in toolbox.tools){
+	for(var toolIndex in toolbox.tools){
+		var tool = toolbox.tools[toolIndex];
 		if(!tool.empty){
 			trace(toolOrder[current], "<----");
 			if(tool.toolName == toolOrder[current]){
-				makeDraggable(tool.tool, null, mouseUpCallback(tool.tool, tool.tool.x, tool.tool.y));
+				makeDraggable(tool.tool, null, mouseUpCallback(tool.tool, tool.tool.x, tool.tool.y, toolIndex));
 			};
 			tool.tool.addEventListener(MouseEvent.MOUSE_DOWN, switchAndTalk(tool, tool.toolName));
 		}
@@ -119,7 +126,7 @@ switch(timeline){
 			var msg2:Message = new Message(stage, 100, 370, "Good, I took care of the ABC protocol. I should\ngather the rest of the patient’s\ninformation for my notepad.", true);
 			var gotoEMT = function(){
 				msg2.remove();
-				var msg:Message = new Message(stage, 550, 320, "Look at your notepad for information that\n you have already collected and for\n hints on what to do next.");
+				var msg:Message = new Message(stage, 550, 320, "Look at your notepad for information\nthat you have already collected and\nfor hints on what to do next.");
 				gotoAndStop("Scene_EMT");
 				stage.removeEventListener(MouseEvent.CLICK, gotoEMT);
 			}

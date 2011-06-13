@@ -7,12 +7,12 @@ switch(timeline){
 		trace("about to do stethascope animation");
 		var tween;
 		var listenTimer;
-		var msg;
+		var msgAir;
 		
 		var skipAhead = function(){
 			if(listenTimer){
-				listenTimer.dispatchEvent(new TimerEvent(TimerEvent.TIMER));
 				listenTimer.stop();
+				listenTimer.dispatchEvent(new TimerEvent(TimerEvent.TIMER));
 				listenTimer = null;
 				return
 			}
@@ -29,15 +29,16 @@ switch(timeline){
 		tween = createTween(img, "y", None.easeInOut, 45, -1, 100, function(){
 			tween = null;
 			listenTimer = timer(1000, function(){
-				msg = new Message(stage, 550, 220, "The airway sounds clear.");
-				tween = createTween(img, "y", None.easeInOut, stage.height, -1, 100, function(){
-					if(msg){
-						msg.remove();
-					}
-					remove(img);
-					stage.removeEventListener(MouseEvent.CLICK, skipAhead);
-					gotoAndStop("Scene_Heli2");
-				});
+				if(!msgAir){
+					msgAir = new Message(stage, 550, 220, "The airway sounds clear.");
+					toolbox.addNote("Breathing: Normal");
+					tween = createTween(img, "y", None.easeInOut, stage.height, -1, 100, function(){
+						msgAir.remove();
+						remove(img);
+						stage.removeEventListener(MouseEvent.CLICK, skipAhead);
+						gotoAndStop("Scene_Heli2");
+					});
+				}
 			});
 		});
 		stage.addEventListener(MouseEvent.CLICK, skipAhead);
@@ -85,7 +86,9 @@ switch(timeline){
 		var tweens = new Array();
 		var needle = guage.needle;
 		trace(needle);
-		pump.x = stage.width - pump.width;
+		
+		//TODO: make stage.width global (it doesn't work if things go outside the stage)
+		pump.x = 800 - pump.width;
 		pump.y = stage.height;
 		pump.gotoAndStop("release");
 		guage.x = 0;
@@ -119,10 +122,10 @@ switch(timeline){
 			tweens[1] = createTween(guage, "y", None.easeInOut, 145, -1, 80, function(){
 				pumpTimer = timer(250, pumpCuff, 35, false, function(){
 					pumpTimer = null;
-					trace("here");
 					var msg = "";
 					animationTimers[0] = timer(3000, function(){
 						msg = new Message(stage, 550, 220, "His blood pressure is a little low,\nwe’ll keep an eye on it.", true);
+						toolbox.addNote("Blood Pressure: '90/60'");
 					});
 					animationTimers[1] = timer(4000, function(){
 						  tweens[0] = createTween(pump, "y", None.easeInOut, stage.height, -1, 80);

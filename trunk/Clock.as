@@ -39,9 +39,9 @@
 		
 		public function reduceAngle(angle){
 			var oldAngle = this.angle;
-			createTween(clockHand, "alpha", None.easeInOut, 0, -1, 10, function(){
+			createTween(clockHand, "alpha", None.easeInOut, 0, -1, 30, function(){
 				updateAngle(oldAngle-angle);
-				createTween(clockHand, "alpha", None.easeInOut, 1);
+				createTween(clockHand, "alpha", None.easeInOut, 1, -1, 30);
 			});
 			
 		

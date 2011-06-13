@@ -31,8 +31,8 @@ var createListener = function(tool, index){
 				space.addTool(toolData[index].className, addImage(toolData[index].className, tool.x, tool.y));
 				stage.removeChild(tool);
 				storeCount++;
-				trace(tools.length, storeCount);
 				if(tools.length == storeCount){
+					remove(front);
 					gotoAndStop(currentFrame-1);
 				}
 			});

@@ -1,4 +1,7 @@
-﻿var toAdd = "1st person POV player: On top of hospital helipad, running toward the helicopter.\n"+
+﻿gotoAndStop("Scene_EMT");
+return;
+
+var toAdd = "1st person POV player: On top of hospital helipad, running toward the helicopter.\n"+
 			"The EMT and pilots are running to the helicopter with stretcher. Fade out.\n"+
 			"3rd person POV: Helicopter zooming over mountainous terrain.\n"+
 			"Brief shots of inside helicopter, 1st POV player.\n"+

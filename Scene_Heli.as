@@ -86,7 +86,8 @@ var configureTools = function(){
 
 switch(timeline){
 	case 1:
-		clock = new Clock(stage, 0, HEIGHT-100);	
+		toolbox = new Toolbox(stage);
+		clock = toolbox.clock;	
 		clock.updateAngle(360);
 		//timer(10, function(){
 		//		angle=angle-1%180;
@@ -94,7 +95,7 @@ switch(timeline){
 		//}, 0)
 		
 		//var toolbox:Toolbox = new Toolbox(stage);
-		toolbox = new Toolbox(stage);
+		
 		
 		var button:ClickRegion = new ClickRegion(stage, 150, 100, 210, 150, function(){
 			trace("going");

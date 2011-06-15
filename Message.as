@@ -1,6 +1,8 @@
 ﻿package{
 	import flash.display.MovieClip;
-	import flash.events.*;
+	import fl.transitions.Tween;
+	import fl.transitions.easing.*;
+	import fl.transitions.TweenEvent;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.text.TextFieldAutoSize;

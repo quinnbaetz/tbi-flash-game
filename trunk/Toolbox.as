@@ -1,7 +1,14 @@
 ﻿package{
-	import flash.display.*;
-	import flash.events.*;
-	import flash.text.*;
+	import flash.display.MovieClip;
+	import fl.transitions.Tween;
+	import fl.transitions.easing.*;
+	import fl.transitions.TweenEvent;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.text.TextFieldAutoSize;
+	import flash.display.Bitmap;
+	import flash.display.Sprite;
+	import flash.events.MouseEvent;
 	public class Toolbox extends MovieClip
 	{
 		
@@ -10,31 +17,51 @@
 		public var menu;
 		public var menuBox;
 		public var pad;
+		public var clock;
 		public var notes = new Array();
 		public var tools = new Array();
 		var theStage;
 		function Toolbox(theStage){
 			this.theStage = theStage;
 			
+			clock = new Clock(theStage, 0, 500)
+			
 			pad = new notepad();
 			var myImage:Bitmap = new Bitmap(pad);
 			var sprite:Sprite = new Sprite();
-			sprite.x = 700;
-			sprite.y = 480;
+			var padX = -43;
+			var padY = 430;
+			var padRot = 30;
+			var scale = .4;
+			trace(sprite.width, sprite.height);
+			sprite.scaleX = scale;
+			sprite.scaleY = scale;
+			sprite.x = padX;
+			sprite.y = padY;
+			sprite.rotation = padRot;
 			sprite.addChild(myImage);
 			this.theStage.addChild(sprite);
 			pad = sprite;
-		
-			pad.addEventListener(MouseEvent.CLICK, function(){
+			
+			var padToggle = function(){
 				bringForward();
-				if(pad.x>600){
+				if(pad.x<100){
 					createTween(pad, "x", None.easeInOut, 225);
 					createTween(pad, "y", None.easeInOut, 10);
+					createTween(pad, "scaleX", None.easeInOut, 1);
+					createTween(pad, "scaleY", None.easeInOut, 1);
+					createTween(pad, "rotation", None.easeInOut, 0);
 				}else{
-					createTween(pad, "x", None.easeInOut, 700);
-					createTween(pad, "y", None.easeInOut, 480);
+					createTween(pad, "x", None.easeInOut, padX);
+					createTween(pad, "y", None.easeInOut, padY);
+					createTween(pad, "scaleX", None.easeNone, scale);
+					createTween(pad, "scaleY", None.easeNone, scale);
+					createTween(pad, "rotation", None.easeInOut, padRot);
 				} 
-			});
+			}
+			
+			pad.addEventListener(MouseEvent.MOUSE_DOWN, padToggle);
+			clock.myAddEventListener(MouseEvent.MOUSE_DOWN, padToggle);
 			//create black box
 			menuBox = new Canvas();
 			menuBox.graphics.beginFill(0x000000, 1);
@@ -120,10 +147,10 @@
 		import fl.transitions.easing.*;
 		import fl.transitions.TweenEvent;
 		var tweens:Array = new Array();
-		private function createTween(obj:Object, prop:String, type, endVal:int, startVal:int = -1, numFrames = 10, callBack:Function = null, useTime:Boolean = false):Tween{
-			if(startVal == -1)
+		private function createTween(obj:Object, prop:String, type, endVal, startVal = -1, numFrames = 10, callBack:Function = null, useTime:Boolean = false):Tween{
+			if(startVal == -1){
 				startVal = obj[prop];
-			
+			}
 			var tempTween:Tween = new Tween(obj, prop, type, startVal, endVal, numFrames, useTime);
 			tweens.push(tempTween);
 			tempTween.addEventListener(TweenEvent.MOTION_FINISH, tweenEnd);

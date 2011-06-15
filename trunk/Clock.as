@@ -22,6 +22,12 @@
 		var clockHand = null;
 		var clockBack;
 		var listener = null;
+		
+		public function myAddEventListener(listener, callback){
+			clockHand.addEventListener(listener, callback);
+			clockBack.addEventListener(listener, callback);
+		
+		}
 		function Clock(theStage, xLoc=0, yLoc=0){
 			
 			

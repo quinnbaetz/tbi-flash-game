@@ -33,6 +33,10 @@
 			
 			clockBack = new ClockBack();
 			clockHand = new ClockHand();
+			clockBack.buttonMode = true;
+			clockBack.useHandCursor = true;
+			clockHand.buttonMode = true;
+			clockHand.useHandCursor = true;
 			setProps(clockHand, "x", xLoc,
 					 			 "y", yLoc);
 			setProps(clockBack, "x", xLoc,
@@ -43,6 +47,22 @@
 			this.theStage = theStage;
 		}
 		
+		public function hide(){
+			clockBack.alpha = 0;
+			clockHand.alpha = 0;
+			clockBack.buttonMode = false;
+			clockBack.useHandCursor = false;
+			clockHand.buttonMode = false;
+			clockHand.useHandCursor = false;
+		}
+		public function show(){
+			clockBack.alpha = 1;
+			clockHand.alpha = 1;
+			clockBack.buttonMode = true;
+			clockBack.useHandCursor = true;
+			clockHand.buttonMode = true;
+			clockHand.useHandCursor = true;
+		}
 		public function reduceAngle(angle){
 			var oldAngle = this.angle;
 			createTween(clockHand, "alpha", None.easeInOut, 0, -1, 30, function(){

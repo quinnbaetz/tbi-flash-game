@@ -31,15 +31,28 @@
 		function bringForward(){
 			theStage.setChildIndex(theStage.getChildByName(toolRect.name), theStage.numChildren-1);
 		}
-		
+		function show(){
+			toolRect.alpha = 1;
+		}
+		function hide(){
+			toolRect.alpha = 0;
+		}
 		public function addTool(toolName, tool){
-			trace(toolName);
 			this.toolName = toolName;
 			this.tool = tool;
 			tool.x = 3;
 			tool.y = 3;
 			tool.width = toolRect.width-6;
 			tool.height = toolRect.height-6;
+			
+			/*var tt:Tooltip = new Tooltip(0xFFFFEC,0x000000);
+			toolRect.onRollOver = function(evt) {
+				tt.showTip(toolName, evt);
+			}
+			toolRect.onRollOut = function() {
+				tt.removeTip();
+			}*/
+
 			toolRect.addChild(tool);
 			empty = false;
 		}

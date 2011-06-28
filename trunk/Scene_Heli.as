@@ -1,4 +1,5 @@
 ﻿var lostTime = false;
+var msg2;
 //can move functions into main if needed
 var mouseUpCallback = function(tool, x, y, index){
 		var fun = function(e){
@@ -69,26 +70,41 @@ var switchAndTalk = function(tool, toolName){
 	return fun;
 
 }
-		
+var rollovers = true;
+var rollOverTT = function(tool, toolName){
+	return  function(evt){
+		if(rollovers){
+			tt.addTip(tool, toolName);
+		}
+	};
+
+}
 var configureTools = function(){
 	lostTime = false;
+	rollovers = true;
 	for(var toolIndex in toolbox.tools){
 		var tool = toolbox.tools[toolIndex];
 		if(!tool.empty){
-			trace(toolOrder[current], "<----");
-			if(tool.toolName == toolOrder[current]){
-				makeDraggable(tool.tool, null, mouseUpCallback(tool.tool, tool.tool.x, tool.tool.y, toolIndex));
-			};
+			tool.tool.buttonMode = true;
+			tool.tool.useHandCursor = true;
+			//tt.buttonMode = true;
+			//tt.useHandCursor = true;
 			tool.tool.addEventListener(MouseEvent.MOUSE_DOWN, switchAndTalk(tool, tool.toolName));
+			tool.tool.addEventListener(MouseEvent.ROLL_OVER,rollOverTT(tool.tool, tool.toolName));
+			if(tool.toolName == toolOrder[current]){
+				makeDraggable(tool.tool, function(evt){
+					rollovers = false;
+					tt.removeTip();		  
+				}, mouseUpCallback(tool.tool, tool.tool.x, tool.tool.y, toolIndex));
+			};
+									   
 		}
 	}	
 }
 
 switch(timeline){
 	case 1:
-		toolbox = new Toolbox(stage);
-		clock = toolbox.clock;	
-		clock.updateAngle(360);
+		toolbox.show();
 		//timer(10, function(){
 		//		angle=angle-1%180;
 		//		clock.updateAngle(angle);
@@ -102,36 +118,41 @@ switch(timeline){
 			button.remove();
 			gotoAndStop(currentFrame+1);		
 		});
-		
+		 
 		timeline++;
 		break;
 	case 2:	
 		
-		var msg2:Message = new Message(stage, 100, 370, "Let’s see, I need to do the ABC protocol.\n ‘A’ stands for Airway, and ‘B’ is for breathing.\n I have to make sure the windpipe is not blocked\nand the patient is able to breathe.\nWhat tool is used for listening to breathing?", true);
-		//msg2.remove();
-		configureTools();
+		var messages = new Array("Let’s see, I need to do the ABC protocol.",
+								 "‘A’ stands for Airway,",
+								 "and ‘B’ is for breathing.",
+								 "I have to make sure the trachea\nis not blocked and the\npatient is able to breathe.");
+	   
+	   displayMessages(messages, 100, 370, function(){
+			msg2 = new Message(stage, 100, 370, "What tool is used for listening to breathing?", true);
+			configureTools();
+		}, true);
 		timeline++;
 		break;
 		
 	case 4:
 			configureTools();
-			var msg2:Message = new Message(stage, 100, 370, "Now I need to make sure\nthe patient’s circulation is ok.", true);
+			msg2 = new Message(stage, 100, 370, "Now I need to make sure\nthe patient’s circulation is ok.", true);
 			timeline++;
 	break;
 	case 6:
 			configureTools();
-			var msg2:Message = new Message(stage, 100, 370, "I should still patch up any\n wounds to prevent blood loss.", true);
+			msg2 = new Message(stage, 100, 370, "I should still patch up any\n wounds to prevent blood loss.", true);
 			timeline++;
 	break;
 	case 8:
-			var msg2:Message = new Message(stage, 100, 370, "Good, I took care of the ABC protocol. I should\ngather the rest of the patient’s\ninformation for my notepad.", true);
-			var gotoEMT = function(){
-				msg2.remove();
-				var msg:Message = new Message(stage, 550, 320, "Look at your notepad for information\nthat you have already collected and\nfor hints on what to do next.");
+			var messages = new Array("Good, I took care of the ABC protocol.",
+								     "I should gather the rest of the\npatient’s information for my notepad.");
+	   
+	   		displayMessages(messages, 100, 370, function(){
+				var msg:Message = new Message(stage, 550, 320, "Look at your notepad for information\nthat you have already collected and\nfor hints on what to do next.", false);
 				gotoAndStop("Scene_EMT");
-				stage.removeEventListener(MouseEvent.CLICK, gotoEMT);
-			}
-			stage.addEventListener(MouseEvent.CLICK, gotoEMT);
+			}, true);
 			timeline++;
 	break;
 

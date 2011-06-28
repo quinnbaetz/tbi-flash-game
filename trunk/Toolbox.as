@@ -17,31 +17,37 @@
 		public var menu;
 		public var menuBox;
 		public var pad;
+		public var chart;
 		public var clock;
 		public var notes = new Array();
 		public var tools = new Array();
 		var theStage;
+		var dataNames = new Array("accident", "age", "gcs", "bp", "pName", "lungs", "pupils", "pTemp", "heightWeight");
 		function Toolbox(theStage){
 			this.theStage = theStage;
 			
 			clock = new Clock(theStage, 0, 500)
-			
-			pad = new notepad();
-			var myImage:Bitmap = new Bitmap(pad);
-			var sprite:Sprite = new Sprite();
+			//switched to not use notepad for the time being
+			var sprite = new Chart();
+			sprite.buttonMode = true;
+			sprite.useHandCursor = true;
+			//var myImage:Bitmap = new Bitmap(pad);
+			//var sprite:Sprite = new Sprite();
 			var padX = -43;
 			var padY = 430;
 			var padRot = 30;
 			var scale = .4;
-			trace(sprite.width, sprite.height);
 			sprite.scaleX = scale;
 			sprite.scaleY = scale;
 			sprite.x = padX;
 			sprite.y = padY;
 			sprite.rotation = padRot;
-			sprite.addChild(myImage);
+			for each(var dName in dataNames){
+				sprite[dName].visible = false;
+			}
 			this.theStage.addChild(sprite);
 			pad = sprite;
+			chart = sprite;
 			
 			var padToggle = function(){
 				bringForward();
@@ -110,6 +116,33 @@
 			}
 		}
 		
+		public function hide(){
+			menuBox.alpha = 0;
+			index.alpha = 0;
+			menu.alpha = 0;
+			chart.alpha = 0;
+			
+			chart.buttonMode = false;
+			chart.useHandCursor = false;
+			for each(var tool in tools){
+				tool.hide();
+			}
+			clock.hide();
+		}
+		
+		public function show(){
+			menuBox.alpha = 1;
+			index.alpha = 1;
+			menu.alpha = 1;
+			chart.alpha = 1;
+			chart.buttonMode = true;
+			chart.useHandCursor = true;
+			for each(var tool in tools){
+				tool.show();
+			}
+			clock.show();
+		}
+		
 		public function addNote(msg){
 			createTween(pad, "alpha", None.easeInOut, 0, -1, 30, function(){
 				var format:TextFormat = new TextFormat();
@@ -135,6 +168,14 @@
 				pad.addChild(textMsg);
 				notes.push(textMsg);
 				createTween(pad, "alpha", None.easeInOut, 1, -1, 30);
+			});
+		}
+		
+		public function makeVisible(note){
+			
+			createTween(chart, "alpha", None.easeInOut, 0, -1, 30, function(){
+				chart[note].visible = true;
+				createTween(chart, "alpha", None.easeInOut, 1, -1, 30);
 			});
 		}
 		

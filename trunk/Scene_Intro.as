@@ -1,4 +1,5 @@
-﻿var toAdd = "Dispatcher: 9-1-1, what is your emergency?\n\n"+
+﻿toolbox.hide();
+var toAdd = "Dispatcher: 9-1-1, what is your emergency?\n\n"+
 			"Caller: There’s been an accident! He’s not moving!\nWe were biking and he fell and… Oh my gosh…\n\n"+
 			"Dispatcher:  Ma’am, just try to remain calm; help is\nbeing dispatched to your location.";
 

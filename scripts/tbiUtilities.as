@@ -1,4 +1,5 @@
 ﻿import flash.display.Sprite;
+import flash.display.MovieClip;
 
 function addImage(className,x ,y){
 	
@@ -34,4 +35,58 @@ function resetTools(){
 			tool.addTool(tName, temp); 
 		}
 	}
+}
+
+function fadeIn(callback = null){
+	fade(callback, true);
+}
+
+
+function fadeOut(callback = null){
+	fade(callback, false);
+}
+
+function fade(callback = null, type = true){
+	trace("trying to fade", type);
+	//not actually a sprite
+	var sprite:MovieClip = new Canvas();
+	sprite.graphics.beginFill(0x000000, 1);
+	sprite.graphics.drawRect(0, 0, stage.width, stage.height);
+	sprite.graphics.endFill();
+	sprite.width=stage.width;
+	sprite.height=stage.height;
+	sprite.alpha = type;
+	var adv = function(){
+		tween.fforward();
+	};
+	
+	trace(!type);
+	var tween = createTween(sprite, "alpha", Regular.easeInOut, !type, -1, 80, function(){
+		//stage.removeChild(sprite);
+		stage.removeEventListener(MouseEvent.CLICK, adv);
+		if(callback != null){
+			callback();
+		}
+	});
+	stage.addEventListener(MouseEvent.CLICK, adv);
+	stage.addChild(sprite);
+}
+
+
+function displayMessages(msgArr, msgX, msgY, callback, msgType = false){
+	var msgNum = 0;
+	var msg:Message = new Message(stage, msgX, msgY, msgArr[0], msgType);
+	stage.addEventListener(MouseEvent.MOUSE_DOWN, function(){
+		msg.remove();
+		msgNum++;
+		if(msgNum<msgArr.length){
+			msg = new Message(stage, msgX, msgY, msgArr[msgNum], msgType);
+		}else{
+			stage.removeEventListener(MouseEvent.MOUSE_DOWN, arguments.callee);
+			callback();
+		}
+	});
+	
+	
+	
 }

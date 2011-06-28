@@ -10,8 +10,11 @@
 	{
 		private var my_button:SimpleButton;
 		private var myStage;
-		function ClickRegion(stage, x, y, width, height, fun)
+		function ClickRegion(stage, x, y, width, height, fun = null)
 		{
+			if(fun == null){
+				fun = function(){};
+			}
 			my_button=new SimpleButton();
 			my_button.x=x;
 			my_button.y=y;
@@ -20,6 +23,10 @@
 			my_button.hitTestState=drawArea(x, y, width, height);
 			
 			my_button.addEventListener(MouseEvent.CLICK,fun);
+			var that = this;
+			my_button.addEventListener(MouseEvent.MOUSE_DOWN,function(evt){that.dispatchEvent(evt)});
+			my_button.addEventListener(MouseEvent.MOUSE_UP,function(evt){that.dispatchEvent(evt)});
+			
 			myStage = stage;
 			myStage.addChild(my_button);
 			

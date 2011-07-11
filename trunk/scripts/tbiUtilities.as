@@ -1,8 +1,8 @@
 ﻿import flash.display.Sprite;
 import flash.display.MovieClip;
+import flash.media.SoundTransform;
 
 function addImage(className,x ,y){
-	
 	var ClassReference:Class = getDefinitionByName(className) as Class;
 	var instance:* = new ClassReference();
 	var myImage:Bitmap = new Bitmap(instance);
@@ -86,7 +86,15 @@ function displayMessages(msgArr, msgX, msgY, callback, msgType = false){
 			callback();
 		}
 	});
-	
-	
-	
+}
+
+function playSound(className, repitions = 1, startPoint = 0, vol=1){
+	trace(className);
+	var ClassReference:Class = getDefinitionByName(className) as Class;
+	var sound = new ClassReference();
+	var someChannel = new SoundChannel();
+	var someTransform = new SoundTransform();
+	someTransform.volume = vol;
+	someChannel = sound.play(startPoint, repitions,someTransform);
+	return someChannel;
 }

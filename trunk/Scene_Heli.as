@@ -3,18 +3,28 @@ var msg2;
 //can move functions into main if needed
 var mouseUpCallback = function(tool, x, y, index){
 		var fun = function(e){
+			currentTool = toolbox.tools[index].toolName;
 			var tempx = tool.x;
 			var tempy = tool.y;
 			resetTools();
 			tool = toolbox.tools[index].tool;
 			tool.x = tempx;
 			tool.y = tempy;
-			createTween(tool, "x", Regular.easeInOut, x);
-			createTween(tool, "y", Regular.easeInOut, y, -1, 10, function(){
-				
-			});
-			msg2.remove();
-			gotoAndStop("Scene_Torso");
+			
+			if(currentTool != "cuff" && currentTool != "gauze"){
+				createTween(tool, "x", Regular.easeInOut, x);
+				createTween(tool, "y", Regular.easeInOut, y);
+			}
+			
+			toolOrder.splice(toolOrder.indexOf(currentTool), 1);
+			if(msg2){
+				msg2.remove();
+			}
+			if(timeline>7){
+				gotoAndStop("Scene_Head");
+			}else{
+				gotoAndStop("Scene_Torso");
+			}
 		}
 		return fun;
 	};
@@ -24,26 +34,29 @@ var switchAndTalk = function(tool, toolName){
 		var speach = "";
 		trace(toolName, "chosen");
 		forceToFront(tool.tool); 
-		if(toolOrder[current] == toolName){
-			current++;
+		if(toolOrder.indexOf(toolName)>=0){
 			return;
 		}
-		switch(toolName){
-			case "thermometer":
-				speach = "That’s the ear thermometer, but\nthat’s not what we need right now.";
-				break;
-			case "cuff":
-				speach = "That’s the blood pressure cuff, not\nthe tool you need right now.";
-				break;
-			case "gauze":
-				speach = "That’s the roll of gauze… make\nsure you are using the right tool.";
-				break;
-			case "penLight":
-				speach = "That’s the penlight, but we\nneed a different tool right now."
-				break; 
-			case "stethoscope":
-				speach = "That’s the stethoscope, not\n the tool you need right now."
-				break;
+		if(timeline>7){
+			speach = "We already used that tool,\nlook at your notepad to see\nwhat information you still need\nto collect."
+		}else{
+			switch(toolName){
+				case "thermometer":
+					speach = "That’s the ear thermometer, but\nthat’s not what we need right now.";
+					break;
+				case "cuff":
+					speach = "That’s the blood pressure cuff, not\nthe tool you need right now.";
+					break;
+				case "gauze":
+					speach = "That’s the roll of gauze… make\nsure you are using the right tool.";
+					break;
+				case "penLight":
+					speach = "That’s the penlight, but we\nneed a different tool right now."
+					break; 
+				case "stethoscope":
+					speach = "That’s the stethoscope, not\n the tool you need right now."
+					break;
+			}
 		}
 		if(!lostTime){
 			clock.reduceAngle(20);
@@ -91,7 +104,7 @@ var configureTools = function(){
 			//tt.useHandCursor = true;
 			tool.tool.addEventListener(MouseEvent.MOUSE_DOWN, switchAndTalk(tool, tool.toolName));
 			tool.tool.addEventListener(MouseEvent.ROLL_OVER,rollOverTT(tool.tool, tool.toolName));
-			if(tool.toolName == toolOrder[current]){
+			if(toolOrder.indexOf(tool.toolName)>=0){
 				makeDraggable(tool.tool, function(evt){
 					rollovers = false;
 					tt.removeTip();		  
@@ -101,7 +114,7 @@ var configureTools = function(){
 		}
 	}	
 }
-
+trace(timeline);
 switch(timeline){
 	case 1:
 		toolbox.show();
@@ -125,7 +138,8 @@ switch(timeline){
 		
 		var messages = new Array("Let’s see, I need to do the ABC protocol.",
 								 "‘A’ stands for Airway,",
-								 "and ‘B’ is for breathing.",
+								 "‘B’ is for breathing.",
+								 "and ‘C,’ is for circulation.",
 								 "I have to make sure the trachea\nis not blocked and the\npatient is able to breathe.");
 	   
 	   displayMessages(messages, 100, 370, function(){
@@ -136,11 +150,13 @@ switch(timeline){
 		break;
 		
 	case 4:
+	        toolOrder = new Array("cuff");
 			configureTools();
 			msg2 = new Message(stage, 100, 370, "Now I need to make sure\nthe patient’s circulation is ok.", true);
 			timeline++;
 	break;
 	case 6:
+			toolOrder = new Array("gauze");
 			configureTools();
 			msg2 = new Message(stage, 100, 370, "I should still patch up any\n wounds to prevent blood loss.", true);
 			timeline++;
@@ -149,11 +165,35 @@ switch(timeline){
 			var messages = new Array("Good, I took care of the ABC protocol.",
 								     "I should gather the rest of the\npatient’s information for my notepad.");
 	   
+	   		var emtmsg = null;
 	   		displayMessages(messages, 100, 370, function(){
-				var msg:Message = new Message(stage, 550, 320, "Look at your notepad for information\nthat you have already collected and\nfor hints on what to do next.", false);
+				
+				stage.addEventListener(MouseEvent.MOUSE_DOWN, function(stageEvt){
+					trace(currentScene);
+					if(emtmsg!=null){
+						gotoAndStop("Scene_Heli2");
+						emtmsg.remove();
+						toolOrder = new Array("penLight", "thermometer");
+						stage.removeEventListener(MouseEvent.MOUSE_DOWN, arguments.callee);
+						timeline++;
+						configureTools();
+					}
+				});
+				
+				emtmsg = new Message(stage, 550, 320, "Look at your notepad for information\nthat you have already collected and\nfor hints on what to do next.", false);
 				gotoAndStop("Scene_EMT");
+				
 			}, true);
-			timeline++;
+			
+			
+			
+	break;
+	case 10:
+		timeline++;
+		configureTools();
+	break;
+	case 12:
+	
 	break;
 
 

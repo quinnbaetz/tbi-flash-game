@@ -40,7 +40,11 @@ var tween;
 var skipToNextScene = function(){
 	stage.removeChild(textMsg);
 	stage.removeEventListener(MouseEvent.CLICK, skipAhead);
-	gotoAndStop("Scene_Heli");
+	//Put skip ahead info here
+	//currentTool = "penLight";
+	//timeline = 11;
+	//gotoAndStop("Scene_Head");
+	gotoAndStop("Scene_EMT");
 }
 
 var skipAhead = function(){

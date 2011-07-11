@@ -49,13 +49,18 @@ switch(timeline){
 			 Mouse.cursor="auto";
 			 stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
 			 var tempFunc = arguments.callee;
-			 var temp = createTween(img, "scaleY", None.easeInOut, .9, -1, 50);
+			 var temp = createTween(img, "scaleY", None.easeInOut, .9, -1, 30);
 			 tweens.push(temp);
-			 temp = createTween(img, "scaleX", None.easeInOut, .9, -1, 50, function(){
+			 temp = createTween(img, "scaleX", None.easeInOut, .9, -1, 30, function(){
 			 	tweens = new Array();
-				delayTimer = timer(300, function(){
+				
+				sounds['breath'] = playSound("sound_breath", 3);
+				
+				delayTimer = timer(8000, function(){
+					 sounds['breath'].stop();
+					 sounds['breath'] = null;
 					 delayTimer = null;
-					  msgAir = new Message(stage, 550, 220, "The airway sounds clear.", true);
+					 msgAir = new Message(stage, 550, 220, "The airway sounds clear.", true);
 					//toolbox.addNote("Breathing: Normal");
 					toolbox.makeVisible("lungs");
 					
@@ -79,6 +84,8 @@ switch(timeline){
 		timeline++;
 		break
 	case 5:
+		
+		trace("about to do cuff animation");
 		
 		var firstRun = true;
 		var skipAhead = function(){
@@ -115,8 +122,23 @@ switch(timeline){
 			}
 		}
 		
-		trace("about to do cuff animation");
-		var cuff;
+		var cuff = null;
+		
+		for each(tool in toolbox.tools){
+			if(tool.toolName == "cuff"){
+				var cuffTool = tool.tool;
+				stage.addEventListener(MouseEvent.MOUSE_MOVE, function(){
+					cuffTool.x = mouseX-cuffTool.parent.x;
+					cuffTool.y = mouseY-cuffTool.parent.y-20;
+					if(cuff != null){
+						stage.removeEventListener(MouseEvent.MOUSE_MOVE, arguments.callee);
+						createTween(cuffTool, "x", Regular.easeInOut, 3);
+						createTween(cuffTool, "y", Regular.easeInOut, 3);
+					}
+				});
+			}
+		}
+		
 		var pump = new handPump();
 		var guage = new pumpGuage();
 		var pumpingTimer = null;
@@ -125,6 +147,7 @@ switch(timeline){
 		var goDownTimer = null;	
 		var tweens = new Array();
 		var needle = guage.needle;
+		var releasing = false;
 		var armChoice = function(right){
 			if(right){
 				cuff = addImage("cuffedArmLeft", 0, 218);
@@ -141,8 +164,34 @@ switch(timeline){
 			stage.addChild(guage);
 			toolbox.bringForward();
 			var finished = false;
+			
+			var fixAudio = function(){
+				var toUse = needle.rotation;
+				if(needle.rotation < -100){
+					toUse = 360+needle.rotation;
+				}
+				
+				if(releasing){
+					if(toUse< 70){
+						var someTransform = new SoundTransform(4);
+						sounds['heartBeat'].soundTransform = someTransform;
+					}
+				}else{
+					if(toUse<100){
+					toUse = 100
+					}
+					toUse -= 100;
+					if(toUse > 100){
+						toUse = 100;
+					}
+					
+					var someTransform = new SoundTransform((1-(toUse/100))*8);
+					sounds['heartBeat'].soundTransform = someTransform;
+				}
+			}
 			var pumpUp = function(){
 				needle.rotation += 1.1;
+				fixAudio();
 			}
 			var goDown = function(){
 				if(needle.rotation>=0 && needle.rotation<1){
@@ -152,10 +201,9 @@ switch(timeline){
 					if(needle.rotation < -100){
 						toUse = 360+needle.rotation;
 					}
-					needle.rotation -= Math.max(1, (toUse/55));
-					
-					
+					needle.rotation -= 1;//Math.max(1, (toUse/50));
 				}
+				fixAudio();
 			}
 			
 			var pumpCuff = function(){
@@ -174,7 +222,10 @@ switch(timeline){
 				animationTimers[0] = timer(1500, function(){
 					  tweens[0] = createTween(pump, "y", None.easeInOut, stage.height, -1, 80);
 					  tweens[1] = createTween(guage, "y", None.easeInOut, stage.height, -1, 80, function(){
+							  tweenSound(sounds['heartBeat'], 0, 4, 40);
 							  tweens[0] = createTween(cuff, "alpha", None.easeInOut, 0, -1, 40, function(){
+									sounds['heartBeat'].stop();
+									sounds['heartBeat'] = null;
 									stage.removeEventListener(MouseEvent.CLICK, skipAhead);
 									//goDownTimer.stop();
 									//goDownTimer = null;
@@ -193,31 +244,43 @@ switch(timeline){
 				finished=true;
 			}
 			stage.addEventListener(MouseEvent.CLICK, skipAhead);
+			
+			sounds['heartBeat'] = playSound("sound_heartbeat", int.MAX_VALUE);
+			tweenSound(sounds['heartBeat'], 8, 0, 60);
+			
 			tweens[0] = createTween(cuff, "alpha", None.easeInOut, 1, -1, 60, function(){
 				tweens[0] = createTween(pump, "y", None.easeInOut, 145, -1, 80);
 				tweens[1] = createTween(guage, "y", None.easeInOut, 145, -1, 80, function(){
 					var pumpRegion:ClickRegion = new ClickRegion(stage, 240, 60, 250, 250);
-					var pumpMsg = new Message(stage, 50, 20, "Pump up the cuff as fast as you can.\nTry to get it to 180.", false);
+					var pumpMsg = new Message(stage, 50, 20, "Pump up the cuff until you can\nno longer hear a pulse.", false);
 					
 					pumpRegion.addEventListener(MouseEvent.MOUSE_DOWN, function(){
 						pump.gotoAndStop("squeeze");
+						 playSound("sound_squeezePump");
 						//var pumpMsg = new Message(stage, 550, 220, "Pump up the cuff until you can\nno longer hear a pulse.", false);
 						
 						timer(15, pumpUp, 10, false, function(){
-							if((needle.rotation > -160  && needle.rotation < -100) || (DEBUG && needle.rotation > 80 && needle.rotation < 100)){
+							if((needle.rotation > -160  && needle.rotation < -100) /*|| (DEBUG && needle.rotation > 80 && needle.rotation < 100)*/){
 								if(goDownTimer !=null){
 									goDownTimer.stop();
 									pumpMsg.remove();
 									goDownTimer = null;
 									pumpRegion.remove();
 									var releaseMsg = new Message(stage, 50, 20, "Now release the pressure until\nyou can hear the pulse again.", false);
+									releasing = true;
 									var releaseRegion:ClickRegion = new ClickRegion(stage, 270, 200, 100, 50);
+									sounds['releaseAir'] = new sound_releaseAir();
+									var releaseChannel;
+									var releasePosition = 0;
 									releaseRegion.addEventListener(MouseEvent.MOUSE_DOWN, function(){
-										goDownTimer = timer(50, function(){
+										releaseChannel = sounds['releaseAir'].play(releasePosition);
+										goDownTimer = timer(20, function(){
 											goDown();
 											if(needle.rotation>60 && needle.rotation<70){
 												if(goDownTimer != null){
 													releaseMsg.remove();
+													releaseChannel.stop();
+													sounds['releaseAir'] = null;
 													goDownTimer.stop();
 													goDownTimer = null;
 													firstRun = true;
@@ -227,6 +290,8 @@ switch(timeline){
 										}, 0);
 									});
 									releaseRegion.addEventListener(MouseEvent.MOUSE_UP, function(){
+										releasePosition = releaseChannel.position;
+										releaseChannel.stop();
 										if(goDownTimer != null){
 											goDownTimer.stop();
 											goDownTimer = null;
@@ -239,6 +304,7 @@ switch(timeline){
 						});
 					});
 					pumpRegion.addEventListener(MouseEvent.MOUSE_UP, function(){
+						playSound("sound_releasePump");
 						pump.gotoAndStop("release");
 					});
 					
@@ -277,6 +343,23 @@ switch(timeline){
 		gauze.mask = maskObject;
 		var msg = new Message(stage, 50, 20, "Don’t wrap to wound too tightly…", false);
 								
+		for each(tool in toolbox.tools){
+			if(tool.toolName == "gauze"){
+				var gauzeTool = tool.tool;
+				stage.addEventListener(MouseEvent.MOUSE_MOVE, function(){
+					gauzeTool.x = mouseX-gauzeTool.parent.x;
+					gauzeTool.y = mouseY-gauzeTool.parent.y-20;
+					if(msg == null){
+						stage.removeEventListener(MouseEvent.MOUSE_MOVE, arguments.callee);
+						createTween(gauzeTool, "x", Regular.easeInOut, 3);
+						createTween(gauzeTool, "y", Regular.easeInOut, 3);
+					}
+				});
+			}
+		}
+		
+		toolbox.bringForward();
+		
 		stage.addEventListener(MouseEvent.MOUSE_MOVE, function(){
 			maskObject.graphics.drawCircle(mouseX, mouseY, 10);   
 			gauze.mask = maskObject;

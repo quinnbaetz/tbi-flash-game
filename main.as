@@ -1,6 +1,7 @@
 ﻿include "../../utility.as";
 include "scripts/tbiUtilities.as";
-
+/*import flash.media.Sound;
+import flash.media.SoundChannel;*/
 var scene =3;
 var HEIGHT = 600;
 var WIDTH = 800;
@@ -8,17 +9,15 @@ var toolbox;
 var lastFrame = 0;
 var timeline = 0;
 var clock;
-var DEBUG = false;
+var DEBUG = true;
 //used in heli scene
-var toolOrder = ["stethoscope", "cuff", "gauze"]
-var current = 0;
+var toolOrder = new Array("stethoscope");
+var currentTool = null;
 var tt = new Tooltip(0xFFFFEC,0x000000, stage);
-
+var sounds = new Array();
 toolbox = new Toolbox(stage);
 clock = toolbox.clock;	
 clock.updateAngle(360);
-
-////////////////////
 
 
 gotoAndStop(1);
@@ -65,8 +64,16 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 				trace("Torso scene");
 				include "Scene_Torso.as";
 				break;
+			case 8: 
+				trace("Friend Scene");
+				include "Scene_Friend.as";
+				break;
+			case 9: 
+				trace("Head Scene");
+				include "Scene_Head.as";
+				break;
 			default:
-				trace(lastFrame);
+				trace("No SCript set for scene #" + lastFrame);
 				break;
 			
 		}

@@ -10,7 +10,7 @@
 	{
 		
 		var theStage;
-		var msgBox;
+		var msgBox;  
 		function Message(theStage, x, y, str, clouds=false){
 			//should add in word wrap
 			//create text

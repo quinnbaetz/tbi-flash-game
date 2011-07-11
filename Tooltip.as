@@ -68,8 +68,8 @@
 			this.addEventListener(MouseEvent.MOUSE_DOWN, function(evt){
 				obj.dispatchEvent(evt);  
 			});
-			this.x = mouseX-15;
-			this.y = mouseY-35;
+			this.x = stage.mouseX-15;
+			this.y = stage.mouseY-35;
 								
 		}
 		

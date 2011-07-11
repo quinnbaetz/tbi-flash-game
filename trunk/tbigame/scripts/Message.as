@@ -1,4 +1,4 @@
-﻿package{
+﻿package tbigame.scripts {
 	import flash.display.MovieClip;
 	import fl.transitions.Tween;
 	import fl.transitions.easing.*;

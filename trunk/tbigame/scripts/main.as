@@ -1,4 +1,10 @@
-﻿include "../../../../utility.as";
+﻿import tbigame.scripts.Message;
+import tbigame.scripts.Tooltip;
+import tbigame.scripts.Toolbox;
+import tbigame.scripts.Clock;
+import tbigame.scripts.Tool;
+import tbigame.scripts.ClickRegion;
+include "../../../utility.as";
 include "scripts/tbiUtilities.as";
 /*import flash.media.Sound;
 import flash.media.SoundChannel;*/

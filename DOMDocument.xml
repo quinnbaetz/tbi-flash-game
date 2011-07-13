@@ -17,7 +17,7 @@
           <DOMFolderItem name="images/tools" itemID="4defcd32-00000279"/>
           <DOMFolderItem name="Scenes" itemID="4dd9ddc7-00000014" isExpanded="true"/>
           <DOMFolderItem name="scripts" itemID="4dd9e52f-00000017"/>
-          <DOMFolderItem name="sounds" itemID="4e0fd4b0-0000022b"/>
+          <DOMFolderItem name="sounds" itemID="4e0fd4b0-0000022b" isExpanded="true"/>
      </folders>
      <fonts>
           <DOMFontItem name="Temperature" itemID="4e1a64e3-0000024b" font="Digital-7" size="0" id="2" sourceLastImported="1310352597" embeddedCharacters=".CF " embedRanges="3"/>
@@ -56,7 +56,7 @@
           <DOMBitmapItem name="images/actions/handPumpImages/handPump1.png" itemID="4df26566-0000022e" linkageExportForAS="true" linkageClassName="handPump1" sourceExternalFilepath="./LIBRARY/images/actions/handPumpImages/handPump1.png" sourceLastImported="1307731176" externalFileCRC32="3535642848" externalFileSize="64915" originalCompressionType="lossless" quality="50" href="images/actions/handPumpImages/handPump1.png" bitmapDataHRef="M 29 1307731302.dat" frameRight="7300" frameBottom="9300"/>
           <DOMBitmapItem name="images/actions/handPumpImages/handPump2.png" itemID="4df26567-00000232" linkageExportForAS="true" linkageClassName="handPump2" sourceExternalFilepath="./LIBRARY/images/actions/handPumpImages/handPump2.png" sourceLastImported="1307730317" externalFileCRC32="3813389172" externalFileSize="66187" originalCompressionType="lossless" quality="50" href="images/actions/handPumpImages/handPump2.png" bitmapDataHRef="M 30 1307731303.dat" frameRight="6760" frameBottom="9300"/>
           <DOMBitmapItem name="head.png" itemID="4e11e5b1-0000025e" sourceExternalFilepath="./LIBRARY/head.png" sourceLastImported="1309795679" externalFileCRC32="394978551" externalFileSize="160882" originalCompressionType="lossless" quality="50" href="head.png" bitmapDataHRef="M 50 1309795761.dat" frameRight="16000" frameBottom="12000"/>
-          <DOMSoundItem name="sounds/heartbeat.wav" itemID="4e11026d-00000251" linkageExportForAS="true" linkageClassName="sound_heartbeat" sourceExternalFilepath="./LIBRARY/sounds/heartbeat.wav" sourceLastImported="1309736347" externalFileCRC32="3415901951" externalFileSize="5326576" href="sounds/heartbeat.wav" soundDataHRef="M 45 1309660386.dat" format="44kHz 16bit Stereo" sampleCount="665811" dataLength="1670"/>
+          <DOMSoundItem name="sounds/heartbeat.wav" itemID="4e1cff34-0000023f" linkageExportForAS="true" linkageClassName="sound_heartbeat" sourceExternalFilepath="C:/Users/QuinnBaetz/workspace/Flash/tbigame/tbigame/LIBRARY/sounds/heartbeat.wav" sourceLastImported="1310523177" externalFileCRC32="3415901951" externalFileSize="1898540" href="sounds/heartbeat.wav" soundDataHRef="M 45 1309660386.dat" format="44kHz 16bit Stereo" sampleCount="474624" dataLength="1670"/>
           <DOMBitmapItem name="images/menuBar/notes/chart/data/chartImages/heightweight.png" itemID="4e07d218-0000024b" sourceExternalFilepath="./LIBRARY/images/menuBar/notes/chart/data/chartImages/heightweight.png" sourceLastImported="1309131657" externalFileCRC32="3442330425" externalFileSize="8149" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="images/menuBar/notes/chart/data/chartImages/heightweight.png" bitmapDataHRef="M 43 1309135384.dat" frameRight="6540" frameBottom="1540"/>
           <DOMSoundItem name="sounds/helicopter.wav" itemID="4e110274-00000253" linkageExportForAS="true" linkageClassName="sound_helicopter" sourceExternalFilepath="./LIBRARY/sounds/helicopter.wav" sourceLastImported="1309718510" externalFileCRC32="3768638659" externalFileSize="6718724" href="sounds/helicopter.wav" soundDataHRef="M 46 1309660388.dat" format="44kHz 16bit Stereo" sampleCount="1679670" dataLength="609385"/>
           <DOMBitmapItem name="Scenes/helicopterMain.jpg" itemID="4e11e2ac-00000255" sourceExternalFilepath="./LIBRARY/Scenes/helicopterMain.jpg" sourceLastImported="1309789622" externalFileCRC32="1296907693" externalFileSize="215868" quality="50" href="Scenes/helicopterMain.jpg" bitmapDataHRef="M 1 1306123751.dat" frameRight="16000" frameBottom="12000" isJPEG="true"/>
@@ -112,7 +112,7 @@
           <Include href="pupil.xml" itemID="4e19e7d1-000002af" lastModified="1310322379"/>
           <Include href="pupils.xml" loadImmediate="false" itemID="4e07dca3-0000034d" lastModified="1309138084"/>
           <Include href="Symbol 1.xml" loadImmediate="false" itemID="4e19d9a4-00000256" lastModified="1310317390"/>
-          <Include href="thermometerCheck.xml" itemID="4e1a6071-0000023d" lastModified="1310356304"/>
+          <Include href="thermometerCheck.xml" itemID="4e1a6071-0000023d" lastModified="1310523239"/>
      </symbols>
      <timelines>
           <DOMTimeline name="Scene 1">
@@ -215,6 +215,17 @@
      </timelines>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="1689708" publishTime="1310490712"/>
+          <PublishItem publishSize="1689708" publishTime="1310490677"/>
+          <PublishItem publishSize="1689677" publishTime="1310490372"/>
+          <PublishItem publishSize="1689689" publishTime="1310490162"/>
+          <PublishItem publishSize="1689677" publishTime="1310489845"/>
+          <PublishItem publishSize="1689681" publishTime="1310362364"/>
+          <PublishItem publishSize="1689681" publishTime="1310362207"/>
+          <PublishItem publishSize="1689695" publishTime="1310361952"/>
+          <PublishItem publishSize="1689681" publishTime="1310361906"/>
+          <PublishItem publishSize="1666708" publishTime="1310361887"/>
+          <PublishItem publishSize="1666708" publishTime="1310361572"/>
           <PublishItem publishSize="1666712" publishTime="1310358777"/>
           <PublishItem publishSize="1666707" publishTime="1310358767"/>
           <PublishItem publishSize="1666707" publishTime="1310358674"/>
@@ -224,16 +235,5 @@
           <PublishItem publishSize="1666708" publishTime="1310358610"/>
           <PublishItem publishSize="1666708" publishTime="1310358602"/>
           <PublishItem publishSize="1666706" publishTime="1310358549"/>
-          <PublishItem publishSize="1666706" publishTime="1310358536"/>
-          <PublishItem publishSize="1666708" publishTime="1310358527"/>
-          <PublishItem publishSize="1666707" publishTime="1310358509"/>
-          <PublishItem publishSize="1666711" publishTime="1310358484"/>
-          <PublishItem publishSize="1666708" publishTime="1310358472"/>
-          <PublishItem publishSize="1666707" publishTime="1310358454"/>
-          <PublishItem publishSize="1666708" publishTime="1310358435"/>
-          <PublishItem publishSize="1666706" publishTime="1310358245"/>
-          <PublishItem publishSize="1666696" publishTime="1310358228"/>
-          <PublishItem publishSize="1666698" publishTime="1310358207"/>
-          <PublishItem publishSize="1666699" publishTime="1310358195"/>
      </publishHistory>
 </DOMDocument>

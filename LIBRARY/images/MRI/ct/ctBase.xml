@@ -1,0 +1,25 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/MRI/ct/ctBase" itemID="4e383c84-0000024f" linkageExportForAS="true" linkageClassName="ctBase" lastModified="1312308775" lastUniqueIdentifier="2">
+  <timeline>
+    <DOMTimeline name="ctBase">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance libraryItemName="base.png"/>
+                <DOMSymbolInstance libraryItemName="images/MRI/ct/skull" name="skull" centerPoint3DX="118" centerPoint3DY="145">
+                  <matrix>
+                    <Matrix tx="12" ty="9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

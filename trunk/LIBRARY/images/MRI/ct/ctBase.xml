@@ -1,4 +1,4 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/MRI/ct/ctBase" itemID="4e383c84-0000024f" linkageExportForAS="true" linkageClassName="ctBase" lastModified="1312308775" lastUniqueIdentifier="2">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/MRI/ct/ctBase" itemID="4e383c84-0000024f" linkageExportForAS="true" linkageClassName="ctBase" lastModified="1312329329" lastUniqueIdentifier="8">
   <timeline>
     <DOMTimeline name="ctBase">
       <layers>
@@ -13,6 +13,54 @@
                   </matrix>
                   <transformationPoint>
                     <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="images/MRI/ct/cerrebellum" name="cerrebellum" centerPoint3DX="120.35" centerPoint3DY="206.35">
+                  <matrix>
+                    <Matrix tx="79.35" ty="169.85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="41" y="36.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="images/MRI/ct/frontalLobe" name="frontalLobe" centerPoint3DX="122" centerPoint3DY="58.35">
+                  <matrix>
+                    <Matrix tx="38" ty="23.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="84" y="35"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="images/MRI/ct/lateralVentrical" name="lateralVentrical" centerPoint3DX="115.35" centerPoint3DY="108.35">
+                  <matrix>
+                    <Matrix tx="93.35" ty="86.85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="22" y="21.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="images/MRI/ct/occipitalLobe" name="occipitalLobe" centerPoint3DX="117.35" centerPoint3DY="243.35">
+                  <matrix>
+                    <Matrix tx="32.85" ty="210.85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="84.5" y="32.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="images/MRI/ct/temporalLobe" name="temporalLobe" centerPoint3DX="119.35" centerPoint3DY="153.35">
+                  <matrix>
+                    <Matrix tx="22.85" ty="77.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="96.5" y="76"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="images/MRI/ct/thalamus" name="thalamus" centerPoint3DX="119.35" centerPoint3DY="153.35">
+                  <matrix>
+                    <Matrix tx="86.35" ty="131.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="33" y="22"/>
                   </transformationPoint>
                 </DOMSymbolInstance>
               </elements>

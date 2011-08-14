@@ -1,28 +1,20 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/MRI/ct/cerrebellum" itemID="4e388788-0000028b" linkageExportForAS="true" linkageClassName="cerrebellum" lastModified="1312327664">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/MRI/ct/cerrebellum" itemID="4e388788-0000028b" linkageExportForAS="true" linkageClassName="cerrebellum" lastModified="1313282581">
   <timeline>
     <DOMTimeline name="cerrebellum">
       <layers>
         <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
           <frames>
             <DOMFrame index="0" keyMode="9728">
-              <elements>
-                <DOMBitmapInstance selected="true" libraryItemName="darkGrey.png copy 2"/>
-              </elements>
+              <elements/>
             </DOMFrame>
             <DOMFrame index="1" keyMode="9728">
-              <elements>
-                <DOMBitmapInstance libraryItemName="grey.png copy 3"/>
-              </elements>
+              <elements/>
             </DOMFrame>
             <DOMFrame index="2" keyMode="9728">
-              <elements>
-                <DOMBitmapInstance libraryItemName="red.png copy 3"/>
-              </elements>
+              <elements/>
             </DOMFrame>
             <DOMFrame index="3" keyMode="9728">
-              <elements>
-                <DOMBitmapInstance libraryItemName="green.png copy 4"/>
-              </elements>
+              <elements/>
             </DOMFrame>
           </frames>
         </DOMLayer>

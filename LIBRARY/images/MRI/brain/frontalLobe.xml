@@ -1,4 +1,4 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/MRI/brain/frontalLobe" itemID="4e3893d2-0000026b" linkageExportForAS="true" linkageClassName="frontalLobe2" lastModified="1312331299">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/MRI/brain/frontalLobe" itemID="4e3893d2-0000026b" linkageExportForAS="true" linkageClassName="frontalLobe2" lastModified="1313282829">
   <timeline>
     <DOMTimeline name="frontalLobe" currentFrame="3">
       <layers>
@@ -6,22 +6,22 @@
           <frames>
             <DOMFrame index="0" keyMode="9728">
               <elements>
-                <DOMBitmapInstance libraryItemName="redWithWhite.png"/>
+                <DOMBitmapInstance libraryItemName="frontalloberedWithWhite.png"/>
               </elements>
             </DOMFrame>
             <DOMFrame index="1" keyMode="9728">
               <elements>
-                <DOMBitmapInstance libraryItemName="pink.png copy"/>
+                <DOMBitmapInstance libraryItemName="frontallobe.png"/>
               </elements>
             </DOMFrame>
             <DOMFrame index="2" keyMode="9728">
               <elements>
-                <DOMBitmapInstance libraryItemName="red.png copy 7"/>
+                <DOMBitmapInstance libraryItemName="frontallobered.png"/>
               </elements>
             </DOMFrame>
             <DOMFrame index="3" keyMode="9728">
               <elements>
-                <DOMBitmapInstance selected="true" libraryItemName="green.png copy 8"/>
+                <DOMBitmapInstance libraryItemName="frontallobegreen.png"/>
               </elements>
             </DOMFrame>
           </frames>

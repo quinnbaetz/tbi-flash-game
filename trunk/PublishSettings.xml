@@ -22,24 +22,24 @@
     <qtDefaultName>1</qtDefaultName>
     <rnwkDefaultName>1</rnwkDefaultName>
     <swcDefaultName>1</swcDefaultName>
-    <flashFileName>tbiFlashGame.swf</flashFileName>
-    <projectorWinFileName>tbiFlashGame.exe</projectorWinFileName>
-    <projectorMacFileName>tbiFlashGame.app</projectorMacFileName>
-    <htmlFileName>tbiFlashGame.html</htmlFileName>
-    <gifFileName>tbiFlashGame.gif</gifFileName>
-    <jpegFileName>tbiFlashGame.jpg</jpegFileName>
-    <pngFileName>tbiFlashGame.png</pngFileName>
-    <qtFileName>tbiFlashGame.mov</qtFileName>
-    <rnwkFileName>tbiFlashGame.smil</rnwkFileName>
-    <swcFileName>tbiFlashGame.swc</swcFileName>
+    <flashFileName>tbigame.swf</flashFileName>
+    <projectorWinFileName>tbigame.exe</projectorWinFileName>
+    <projectorMacFileName>tbigame.app</projectorMacFileName>
+    <htmlFileName>tbigame.html</htmlFileName>
+    <gifFileName>tbigame.gif</gifFileName>
+    <jpegFileName>tbigame.jpg</jpegFileName>
+    <pngFileName>tbigame.png</pngFileName>
+    <qtFileName>tbigame.mov</qtFileName>
+    <rnwkFileName>tbigame.smil</rnwkFileName>
+    <swcFileName>tbigame.swc</swcFileName>
   </PublishFormatProperties>
   <PublishHtmlProperties enabled="true">
     <VersionDetectionIfAvailable>0</VersionDetectionIfAvailable>
     <VersionInfo>10,0,2,0;10,2,153,0;10,1,52,0;9,0,124,0;8,0,24,0;7,0,14,0;6,0,79,0;5,0,58,0;4,0,32,0;3,0,8,0;2,0,1,12;1,0,0,1;</VersionInfo>
     <UsingDefaultContentFilename>1</UsingDefaultContentFilename>
     <UsingDefaultAlternateFilename>1</UsingDefaultAlternateFilename>
-    <ContentFilename>tbiFlashGame.xfl_content.html</ContentFilename>
-    <AlternateFilename>tbiFlashGame.xfl_alternate.html</AlternateFilename>
+    <ContentFilename>tbigame.xfl_content.html</ContentFilename>
+    <AlternateFilename>tbigame.xfl_alternate.html</AlternateFilename>
     <UsingOwnAlternateFile>0</UsingOwnAlternateFile>
     <OwnAlternateFilename></OwnAlternateFilename>
     <Width>800</Width>

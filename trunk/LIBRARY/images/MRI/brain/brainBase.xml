@@ -1,4 +1,4 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/MRI/brain/brainBase" itemID="4e3896a1-00000301" linkageExportForAS="true" linkageClassName="brainBase" lastModified="1312332118" lastUniqueIdentifier="7">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/MRI/brain/brainBase" itemID="4e3896a1-00000301" linkageExportForAS="true" linkageClassName="brainBase" lastModified="1313282529" lastUniqueIdentifier="7">
   <timeline>
     <DOMTimeline name="brainBase">
       <layers>
@@ -6,7 +6,6 @@
           <frames>
             <DOMFrame index="0" keyMode="9728">
               <elements>
-                <DOMBitmapInstance libraryItemName="base.png copy"/>
                 <DOMSymbolInstance libraryItemName="images/MRI/brain/cerrebellum" name="cerrebellum" centerPoint3DX="91.05" centerPoint3DY="129.95">
                   <matrix>
                     <Matrix tx="70.05" ty="105.45"/>
@@ -23,7 +22,7 @@
                     <Point x="29" y="22"/>
                   </transformationPoint>
                 </DOMSymbolInstance>
-                <DOMSymbolInstance libraryItemName="images/MRI/brain/skull" name="skull" centerPoint3DX="103.85" centerPoint3DY="125.5">
+                <DOMSymbolInstance libraryItemName="images/MRI/brain/skull" name="skull" selected="true" centerPoint3DX="103.85" centerPoint3DY="125.5">
                   <matrix>
                     <Matrix tx="-10.65" ty="-20"/>
                   </matrix>

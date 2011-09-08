@@ -38,23 +38,23 @@ var switchAndTalk = function(tool, toolName){
 			return;
 		}
 		if(timeline>7){
-			speach = "We already used that tool,\nlook at your notepad to see\nwhat information you still need\nto collect."
+			speach = "We already used that tool, look at your notepad to see what information you still need to collect."
 		}else{
 			switch(toolName){
 				case "thermometer":
-					speach = "That’s the ear thermometer, but\nthat’s not what we need right now.";
+					speach = "That’s the ear thermometer, but that’s not what we need right now.";
 					break;
 				case "cuff":
-					speach = "That’s the blood pressure cuff, not\nthe tool you need right now.";
+					speach = "That’s the blood pressure cuff, not the tool you need right now.";
 					break;
 				case "gauze":
-					speach = "That’s the roll of gauze… make\nsure you are using the right tool.";
+					speach = "That’s the roll of gauze… make sure you are using the right tool.";
 					break;
 				case "penLight":
-					speach = "That’s the penlight, but we\nneed a different tool right now."
+					speach = "That’s the penlight, but we need a different tool right now."
 					break; 
 				case "stethoscope":
-					speach = "That’s the stethoscope, not\n the tool you need right now."
+					speach = "That’s the stethoscope, not the tool you need right now."
 					break;
 			}
 		}
@@ -140,7 +140,7 @@ switch(timeline){
 								 "‘A’ stands for Airway,",
 								 "‘B’ is for breathing.",
 								 "and ‘C,’ is for circulation.",
-								 "I have to make sure the trachea\nis not blocked and the\npatient is able to breathe.");
+								 "I have to make sure the trachea is not blocked and the patient is able to breathe.");
 	   
 	   displayMessages(messages, 100, 370, function(){
 			msg2 = new Message(stage, 100, 370, "What tool is used for listening to breathing?", true);
@@ -152,18 +152,18 @@ switch(timeline){
 	case 4:
 	        toolOrder = new Array("cuff");
 			configureTools();
-			msg2 = new Message(stage, 100, 370, "Now I need to make sure\nthe patient’s circulation is ok.", true);
+			msg2 = new Message(stage, 100, 370, "Now I need to make sure the patient’s circulation is ok.", true);
 			timeline++;
 	break;
 	case 6:
 			toolOrder = new Array("gauze");
 			configureTools();
-			msg2 = new Message(stage, 100, 370, "I should still patch up any\n wounds to prevent blood loss.", true);
+			msg2 = new Message(stage, 100, 370, "I should still patch up any wounds to prevent blood loss.", true);
 			timeline++;
 	break;
 	case 8:
 			var messages = new Array("Good, I took care of the ABC protocol.",
-								     "I should gather the rest of the\npatient’s information for my notepad.");
+								     "I should gather the rest of the patient’s information for my notepad.");
 	   
 	   		var emtmsg = null;
 	   		displayMessages(messages, 100, 370, function(){
@@ -180,7 +180,7 @@ switch(timeline){
 					}
 				});
 				
-				emtmsg = new Message(stage, 550, 320, "Look at your notepad for information\nthat you have already collected and\nfor hints on what to do next.", false);
+				emtmsg = new Message(stage, 550, 320, "Look at your notepad for information that you have already collected and for hints on what to do next.");
 				gotoAndStop("Scene_EMT");
 				
 			}, true);

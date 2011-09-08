@@ -3,6 +3,9 @@
 	import flash.display.MovieClip;
 	import flash.events.*;
 	import flash.display.Shape;
+	import flash.display.Bitmap;
+	import flash.display.Sprite;
+	import flash.utils.getDefinitionByName;
 	public class Tool extends MovieClip
 	{
 		var theStage;
@@ -13,15 +16,16 @@
 		function Tool(theStage, index){
 			
 			//create black box
-			toolRect = new Canvas();
-			toolRect.graphics.lineStyle(3, 0x58585a);
-			toolRect.graphics.beginFill(0x1d1d1e, 1);
-			toolRect.graphics.drawRoundRect(0, 0, 70, 70, 25, 25);
+			//toolRect = new Canvas();
+			//toolRect.graphics.lineStyle(3, 0x58585a);
+			//toolRect.graphics.beginFill(0x1d1d1e, 1);
+			//toolRect.graphics.drawRoundRect(0, 0, 70, 70, 25, 25);
+			toolRect = addImage("slot", index*75+100, 531);
 			toolRect.width = 70;
 			toolRect.height = 70;
-			toolRect.x = index*72+100;
-			toolRect.y = 531;
-			toolRect.graphics.endFill();
+			//toolRect.x = index*72+100;
+			//toolRect.y = 531;
+			//toolRect.graphics.endFill();
 			
 			theStage.addChild(toolRect); 
 			
@@ -40,8 +44,8 @@
 		public function addTool(toolName, tool){
 			this.toolName = toolName;
 			this.tool = tool;
-			tool.x = 3;
-			tool.y = 3;
+			tool.x = 5;
+			tool.y = 5;
 			tool.width = toolRect.width-6;
 			tool.height = toolRect.height-6;
 			
@@ -80,7 +84,16 @@
 		{
 			   return toolRect.y;
 		}
-	
+		private function addImage(className,x ,y){
+			var ClassReference:Class = getDefinitionByName(className) as Class;
+			var instance:* = new ClassReference();
+			var myImage:Bitmap = new Bitmap(instance);
+			var sprite:Sprite = new Sprite();
+			sprite.x = x;
+			sprite.y = y;
+			sprite.addChild(myImage);
+			return sprite;
+		}
 	
 	}
 }

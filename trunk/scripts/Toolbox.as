@@ -8,6 +8,7 @@
 	import flash.text.TextFieldAutoSize;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
+	import flash.utils.getDefinitionByName;
 	import flash.events.MouseEvent;
 	public class Toolbox extends MovieClip
 	{
@@ -15,6 +16,8 @@
 		
 		public var index;
 		public var menu;
+		public var up;
+		public var down;
 		public var menuBox;
 		public var pad;
 		public var chart;
@@ -69,29 +72,40 @@
 			pad.addEventListener(MouseEvent.MOUSE_DOWN, padToggle);
 			clock.myAddEventListener(MouseEvent.MOUSE_DOWN, padToggle);
 			//create black box
-			menuBox = new Canvas();
-			menuBox.graphics.beginFill(0x000000, 1);
-			menuBox.graphics.drawRect(0, 0, 800, 72);
-			menuBox.graphics.endFill();
-			menuBox.x=0;
-			menuBox.y=528;
+			//menuBox = new Canvas();
+			//menuBox.graphics.beginFill(0x000000, 1);
+			//menuBox.graphics.drawRect(0, 0, 800, 72);
+			//menuBox.graphics.endFill();
+			//menuBox.x=0;
+			//menuBox.y=528;
+			menuBox = addImage("drawer", 0, 528);
 			menuBox.width=800;
 			menuBox.height=72;
 			theStage.addChild(menuBox); 
 			
 			//create Buttons
 			index = new IndexButton();
-			index.x=700;
-			index.y=540;
+			index.x=690;
+			index.y=565;
 			theStage.addChild(index); 
 			
 			//create Buttons
 			menu = new MenuButton();
-			menu.x=700;
-			menu.y=570;
+			menu.x=690;
+			menu.y=530;
 			theStage.addChild(menu); 
 			
-			for(var i = 0; i<8; i++){
+			up = new upButton();
+			up.x=640;
+			up.y=540;
+			theStage.addChild(up); 
+			
+			down = new downButton();
+			down.x=640;
+			down.y=570;
+			theStage.addChild(down); 
+			
+			for(var i = 0; i<7; i++){
 				tools.push(new Tool(theStage, i));
 			}
 			
@@ -103,6 +117,9 @@
 			myStage.setChildIndex(myStage.getChildByName(menuBox.name), myStage.numChildren-1);
 			myStage.setChildIndex(myStage.getChildByName(menu.name), myStage.numChildren-1);
 			myStage.setChildIndex(myStage.getChildByName(index.name), myStage.numChildren-1);
+			myStage.setChildIndex(myStage.getChildByName(up.name), myStage.numChildren-1);
+			myStage.setChildIndex(myStage.getChildByName(down.name), myStage.numChildren-1);
+			
 			for each(var tool in tools){
 				tool.bringForward();
 			}
@@ -120,6 +137,8 @@
 			menuBox.alpha = 0;
 			index.alpha = 0;
 			menu.alpha = 0;
+			up.alpha = 0;
+			down.alpha = 0;
 			chart.alpha = 0;
 			
 			chart.buttonMode = false;
@@ -135,6 +154,8 @@
 			index.alpha = 1;
 			menu.alpha = 1;
 			chart.alpha = 1;
+			up.alpha = 1;
+			down.alpha = 1;
 			chart.buttonMode = true;
 			chart.useHandCursor = true;
 			for each(var tool in tools){
@@ -207,7 +228,21 @@
 			
 			return tempTween;
 		}
+		private function addImage(className,x ,y){
+			var ClassReference:Class = getDefinitionByName(className) as Class;
+			var instance:* = new ClassReference();
+			var myImage:Bitmap = new Bitmap(instance);
+			var sprite:Sprite = new Sprite();
+			sprite.x = x;
+			sprite.y = y;
+			sprite.addChild(myImage);
+			return sprite;
+		}
+
 		
 	}	
+	
+
+
 	
 }

@@ -43,7 +43,7 @@ switch(timeline){
 				 }
 			 }
 			 if(mouseY<100 || mouseY>300 || mouseX < 270 || mouseX > 550){
-				 wrongMsg = new Message(stage, 550, 220, "Make sure to place the stethoscope\nwhere we can clearly hear\nthe patient’s lungs.");
+				 wrongMsg = new Message(stage, 550, 220, "Make sure to place the stethoscope where we can clearly hear the patient’s lungs.", false, "emtFace");
 				 return;
 			 }
 			 Mouse.cursor="auto";
@@ -215,7 +215,7 @@ switch(timeline){
 				pumpTimer = null;
 				var msg = "";
 				//animationTimers[0] = timer(3000, function(){
-					msg = new Message(stage, 550, 220, "His blood pressure is a little low,\nwe’ll keep an eye on it.", true);
+					msg = new Message(stage, 550, 220, "His blood pressure is a little low we’ll keep an eye on it.", true);
 					//toolbox.addNote("Blood Pressure: '90/60'");
 					toolbox.makeVisible("bp");
 				//});
@@ -255,7 +255,7 @@ switch(timeline){
 				tweens[0] = createTween(pump, "y", None.easeInOut, 145, -1, 80);
 				tweens[1] = createTween(guage, "y", None.easeInOut, 145, -1, 80, function(){
 					var pumpRegion:ClickRegion = new ClickRegion(stage, 240, 60, 250, 250);
-					var pumpMsg = new Message(stage, 50, 20, "Pump up the cuff until you can\nno longer hear a pulse.", false);
+					var pumpMsg = new Message(stage, 50, 20, "Pump up the cuff until you can no longer hear a pulse.", false, "emtFace");
 					
 					pumpRegion.addEventListener(MouseEvent.MOUSE_DOWN, function(){
 						pump.gotoAndStop("squeeze");
@@ -269,7 +269,7 @@ switch(timeline){
 									pumpMsg.remove();
 									goDownTimer = null;
 									pumpRegion.remove();
-									var releaseMsg = new Message(stage, 50, 20, "Now release the pressure until\nyou can hear the pulse again.", false);
+									var releaseMsg = new Message(stage, 50, 20, "Now release the pressure until you can hear the pulse again.", false, "emtFace");
 									releasing = true;
 									var releaseRegion:ClickRegion = new ClickRegion(stage, 270, 200, 100, 50);
 									sounds['releaseAir'] = new sound_releaseAir();
@@ -344,7 +344,7 @@ switch(timeline){
 		var maskObject:MovieClip = new MovieClip();
 		maskObject.graphics.beginFill(0xFF0000);
 		gauze.mask = maskObject;
-		var msg = new Message(stage, 50, 20, "Don’t wrap to wound too tightly…", false);
+		var msg = new Message(stage, 50, 20, "Don’t wrap the wound too tightly…", false, "emtFace");
 								
 		for each(tool in toolbox.tools){
 			if(tool.toolName == "gauze"){
@@ -381,7 +381,7 @@ switch(timeline){
 				
 				msg.remove();
 				msg = null;
-				var msg2 = new Message(stage, 50, 20, "That looks good", false);
+				var msg2 = new Message(stage, 50, 20, "That looks good", false, "emtFace");
 				stage.addEventListener(MouseEvent.CLICK, function(){
 					stage.removeEventListener(MouseEvent.CLICK, arguments.callee);
 					remove(gauze);

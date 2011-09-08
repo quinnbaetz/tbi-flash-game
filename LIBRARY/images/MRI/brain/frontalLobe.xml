@@ -6,22 +6,22 @@
           <frames>
             <DOMFrame index="0" keyMode="9728">
               <elements>
-                <DOMBitmapInstance libraryItemName="frontalloberedWithWhite.png"/>
+                <DOMBitmapInstance libraryItemName="images/MRI/images/frontalloberedWithWhite.png"/>
               </elements>
             </DOMFrame>
             <DOMFrame index="1" keyMode="9728">
               <elements>
-                <DOMBitmapInstance libraryItemName="frontallobe.png"/>
+                <DOMBitmapInstance libraryItemName="images/MRI/images/frontallobe.png"/>
               </elements>
             </DOMFrame>
             <DOMFrame index="2" keyMode="9728">
               <elements>
-                <DOMBitmapInstance libraryItemName="frontallobered.png"/>
+                <DOMBitmapInstance libraryItemName="images/MRI/images/frontallobered.png"/>
               </elements>
             </DOMFrame>
             <DOMFrame index="3" keyMode="9728">
               <elements>
-                <DOMBitmapInstance libraryItemName="frontallobegreen.png"/>
+                <DOMBitmapInstance libraryItemName="images/MRI/images/frontallobegreen.png"/>
               </elements>
             </DOMFrame>
           </frames>

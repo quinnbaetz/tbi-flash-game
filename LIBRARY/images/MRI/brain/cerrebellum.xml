@@ -6,22 +6,22 @@
           <frames>
             <DOMFrame index="0" keyMode="9728">
               <elements>
-                <DOMBitmapInstance libraryItemName="cerebellumpeach.png"/>
+                <DOMBitmapInstance libraryItemName="images/MRI/images/cerebellumpeach.png"/>
               </elements>
             </DOMFrame>
             <DOMFrame index="1" keyMode="9728">
               <elements>
-                <DOMBitmapInstance libraryItemName="cerebellumwhite.png"/>
+                <DOMBitmapInstance libraryItemName="images/MRI/images/cerebellumwhite.png"/>
               </elements>
             </DOMFrame>
             <DOMFrame index="2" keyMode="9728">
               <elements>
-                <DOMBitmapInstance libraryItemName="cerebellumred.png"/>
+                <DOMBitmapInstance libraryItemName="images/MRI/images/cerebellumred.png"/>
               </elements>
             </DOMFrame>
             <DOMFrame index="3" keyMode="9728">
               <elements>
-                <DOMBitmapInstance selected="true" libraryItemName="cerebellumgreen.png"/>
+                <DOMBitmapInstance selected="true" libraryItemName="images/MRI/images/cerebellumgreen.png"/>
               </elements>
             </DOMFrame>
           </frames>

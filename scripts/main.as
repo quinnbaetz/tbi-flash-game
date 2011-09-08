@@ -1,4 +1,5 @@
 ﻿import tbigame.scripts.Message;
+import tbigame.scripts.Picker;
 import tbigame.scripts.Tooltip;
 import tbigame.scripts.Toolbox;
 import tbigame.scripts.Clock;
@@ -8,7 +9,7 @@ include "../../../utility.as";
 include "tbiUtilities.as";
 /*import flash.media.Sound;
 import flash.media.SoundChannel;*/
-var scene =3;
+var scene =10;
 var HEIGHT = 600;
 var WIDTH = 800;
 var toolbox;
@@ -24,9 +25,6 @@ var sounds = new Array();
 toolbox = new Toolbox(stage);
 clock = toolbox.clock;	
 clock.updateAngle(360);
-
-
-gotoAndStop(1);
 
 if(DEBUG){
 	var text:TextField = new TextField();
@@ -45,8 +43,11 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 		switch(lastFrame){
 			case 1:
 				gotoAndStop(2);
+				//gotoAndStop(10);
 				break;
 			case 2:
+				gotoAndStop(2);
+				//gotoAndStop(10);
 				trace("intro scene");
 				include "scenes/Scene_Intro.as";
 				break;
@@ -77,6 +78,22 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 			case 9: 
 				trace("Head Scene");
 				include "scenes/Scene_Head.as";
+				break;
+			case 10:
+				trace("doctor face scene");
+				include "scenes/Scene_Doctor.as";
+				break;
+			case 11:
+				trace("ct scan Room scene");
+				include "scenes/Scene_CTRoom.as";
+				break;
+			case 12:
+				trace("ct scan Quiz scene");
+				include "scenes/Scene_CTQuiz.as";
+				break;
+			case 13:
+				trace("ct scan scene");
+				include "scenes/Scene_CTScan.as";
 				break;
 			default:
 				trace("No SCript set for scene #" + lastFrame);

@@ -341,8 +341,8 @@
 									tweens.push(createTween(hand, "x", None.easeInOut, stage.width, -1, 3, null, true));
 									toolbox.makeVisible("pupils");
 									var messages = new Array("Good, pupillary reflex is present,",
-								 "both pupils constricted in\n response to light.",
-								 "If there was no response, it\nwould mean the patient’ had\ndamage to their brainstem.");
+								 "both pupils constricted in response to light.",
+								 "If there was no response, it would mean the patient had damage to their brainstem.");
 								   
 								   displayMessages(messages, 100, 370, function(){
 											

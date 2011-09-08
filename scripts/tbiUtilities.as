@@ -2,6 +2,8 @@
 import flash.display.MovieClip;
 import flash.media.SoundTransform;
 
+
+
 function addImage(className,x ,y){
 	var ClassReference:Class = getDefinitionByName(className) as Class;
 	var instance:* = new ClassReference();
@@ -73,14 +75,14 @@ function fade(callback = null, type = true){
 }
 
 
-function displayMessages(msgArr, msgX, msgY, callback, msgType = false){
+function displayMessages(msgArr, msgX, msgY, callback, msgType = false, image=false){
 	var msgNum = 0;
-	var msg:Message = new Message(stage, msgX, msgY, msgArr[0], msgType);
+	var msg:Message = new Message(stage, msgX, msgY, msgArr[0], msgType, image);
 	stage.addEventListener(MouseEvent.MOUSE_DOWN, function(){
 		msg.remove();
 		msgNum++;
 		if(msgNum<msgArr.length){
-			msg = new Message(stage, msgX, msgY, msgArr[msgNum], msgType);
+			msg = new Message(stage, msgX, msgY, msgArr[msgNum], msgType, image);
 		}else{
 			stage.removeEventListener(MouseEvent.MOUSE_DOWN, arguments.callee);
 			callback();

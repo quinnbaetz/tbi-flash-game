@@ -1,6 +1,6 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/scanner/popupBox" itemID="4e69e4b1-00000390" linkageExportForAS="true" linkageClassName="popupBox" lastModified="1315564893">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/scanner/popupBox" itemID="4e69e4b1-00000390" linkageExportForAS="true" linkageClassName="popupBox" lastModified="1315574602">
   <timeline>
-    <DOMTimeline name="popupBox" currentFrame="1">
+    <DOMTimeline name="popupBox" currentFrame="2">
       <layers>
         <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
           <frames>
@@ -41,7 +41,7 @@
                     <Matrix tx="0.3" ty="0.3"/>
                   </matrix>
                 </DOMBitmapInstance>
-                <DOMDynamicText width="303" height="23.25" lineType="multiline">
+                <DOMDynamicText selected="true" width="303" height="23.25" lineType="multiline">
                   <matrix>
                     <Matrix tx="2" ty="35.3"/>
                   </matrix>
@@ -59,7 +59,7 @@
                     <Matrix tx="15.5" ty="87.5"/>
                   </matrix>
                 </DOMBitmapInstance>
-                <DOMSymbolInstance libraryItemName="images/scanner/progressBar" name="scanProgress" selected="true" centerPoint3DX="16.45" centerPoint3DY="108">
+                <DOMSymbolInstance libraryItemName="images/scanner/progressBar" name="scanProgress" centerPoint3DX="16.45" centerPoint3DY="108">
                   <matrix>
                     <Matrix tx="15" ty="87.5"/>
                   </matrix>
@@ -82,14 +82,14 @@
                   </matrix>
                   <textRuns>
                     <DOMTextRun>
-                      <characters>Click To Load Imagery.</characters>
+                      <characters>Click To Operate the CT Scanner.</characters>
                       <textAttrs>
                         <DOMTextAttrs alignment="center" aliasText="false" size="21" bitmapSize="420" face="TimesNewRomanPSMT"/>
                       </textAttrs>
                     </DOMTextRun>
                   </textRuns>
                 </DOMDynamicText>
-                <DOMSymbolInstance libraryItemName="images/scanner/scanButton" symbolType="button">
+                <DOMSymbolInstance libraryItemName="images/scanner/scanButton" name="scanButton" symbolType="button">
                   <matrix>
                     <Matrix tx="75" ty="85"/>
                   </matrix>

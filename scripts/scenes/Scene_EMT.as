@@ -12,10 +12,10 @@
 								 
 		timeline++;
 		fadeIn(function(){
-			new Picker(stage, 20, 20, "hello how are you today", messages);//{
-			//displayMessages(messages, 550, 320, function(){
-			//	gotoAndStop("Scene_Heli2");
-			//}, false);
+			//new Picker(stage, 20, 20, "hello how are you today", messages);//{
+			displayMessages(messages, 550, 320, function(){
+				gotoAndStop("Scene_Heli2");
+			}, false);
 		});
 		var msgNum = 0;
 		

@@ -1,15 +1,10 @@
-﻿//switch(timeline){
-	//case 0:
-		fadeIn();
-		var messages = new Array("Click to start the quiz");
-								 
-		timeline++;
-		fadeIn(function(){
-			displayMessages(messages, 550, 320, function(){
-				gotoAndStop("Scene_CTQuiz");
-			});
+﻿
+switch(timeline){
+	case 51:
+		var messages = new Array("Click to start the quiz"); 
+		displayMessages(messages, 550, 320, function(){
+			gotoAndStop("Scene_CTQuiz");
 		});
-		var msgNum = 0;
 		
 		break;
 	//case 9:
@@ -17,5 +12,6 @@
 		//	fadeOut();
 		//}, 1);
 		
-//}
+}
+timeline++;
 //trace(timeline);

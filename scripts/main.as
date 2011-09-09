@@ -17,6 +17,7 @@ var lastFrame = 0;
 var timeline = 0;
 var clock;
 var DEBUG = true;
+var SCENE = 2;
 //used in heli scene
 var toolOrder = new Array("stethoscope");
 var currentTool = null;
@@ -42,14 +43,23 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 		trace(lastFrame);
 		switch(lastFrame){
 			case 1:
-				gotoAndStop(2);
-				//gotoAndStop(10);
+				if(SCENE===1){
+					gotoAndStop(2);
+				}else{
+					gotoAndStop(11);
+					SCENE=1;
+				}
 				break;
 			case 2:
-				gotoAndStop(2);
-				//gotoAndStop(10);
-				trace("intro scene");
-				include "scenes/Scene_Intro.as";
+				if(SCENE===1){
+					gotoAndStop(2);
+					trace("intro scene");
+					include "scenes/Scene_Intro.as";
+				}else{
+					timeline = 50;
+					gotoAndStop(11);
+					SCENE=1;//so that we can call intro scene again
+				}
 				break;
 			case 3:
 				trace("arrival scene");

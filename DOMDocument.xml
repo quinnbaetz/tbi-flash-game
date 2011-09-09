@@ -55,13 +55,13 @@
           <DOMBitmapItem name="images/menuBar/clock/clock_87.png" itemID="4ddbd628-00000034" sourceExternalFilepath="./LIBRARY/images/menuBar/clock/clock_87.png" sourceLastImported="1306179334" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="images/menuBar/clock/clock_87.png" bitmapDataHRef="M 6 1306252840.dat" frameRight="1920" frameBottom="2000"/>
           <DOMBitmapItem name="images/menuBar/clock/clock_hand.png" itemID="4ddbd628-0000002a" sourceExternalFilepath="./LIBRARY/images/menuBar/clock/clock_hand.png" sourceLastImported="1306179300" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="images/menuBar/clock/clock_hand.png" bitmapDataHRef="M 4 1306252840.dat" frameRight="1920" frameBottom="2000"/>
           <DOMBitmapItem name="images/menuBar/clock/clock-face.png" itemID="4ddbd628-00000025" sourceExternalFilepath="./LIBRARY/images/menuBar/clock/clock-face.png" sourceLastImported="1306179280" originalCompressionType="lossless" quality="50" href="images/menuBar/clock/clock-face.png" bitmapDataHRef="M 3 1306252840.dat" frameRight="1920" frameBottom="2000"/>
-          <DOMBitmapItem name="Scenes/CTscanIntroShot.jpg" itemID="4e69e4a6-0000038b" sourceExternalFilepath="C:/Users/QuinnBaetz/workspace/Flash/tbigame/tbigame/LIBRARY/Scenes/CTscanIntroShot.jpg" sourceLastImported="1315562660" externalFileSize="312609" originalCompressionType="lossless" quality="50" href="Scenes/CTscanIntroShot.jpg" bitmapDataHRef="M 119 1313287228.dat" frameRight="32000" frameBottom="24000" isJPEG="true"/>
+          <DOMBitmapItem name="Scenes/CTscanIntroShot.jpg" itemID="4e69e4a6-0000038b" sourceExternalFilepath="C:/Users/QuinnBaetz/workspace/Flash/tbigame/tbigame/LIBRARY/Scenes/CTscanIntroShot.jpg" sourceLastImported="1315562660" externalFileSize="312609" originalCompressionType="lossless" quality="50" href="Scenes/CTscanIntroShot.jpg" bitmapDataHRef="M 119 1313287228.dat" frameLeft="-115200" frameTop="-115200" frameRight="-115200" frameBottom="-115200"/>
           <DOMBitmapItem name="Scenes/CTscanIntroShot.jpg copy" itemID="4e69e4a6-0000038c" sourceExternalFilepath="C:/Users/QuinnBaetz/workspace/Flash/tbigame/tbigame/LIBRARY/Scenes/CTscanIntroShot.jpg" sourceLastImported="1315562660" externalFileSize="312609" quality="50" href="Scenes/CTscanIntroShot.jpg" bitmapDataHRef="M 120 1313287267.dat" frameRight="32000" frameBottom="24000" isJPEG="true"/>
           <DOMBitmapItem name="images/tools/cuff.png" itemID="4def9652-0000021b" linkageExportForAS="true" linkageClassName="cuff" sourceExternalFilepath="./LIBRARY/images/tools/cuff.png" sourceLastImported="1307547042" externalFileCRC32="1998285673" externalFileSize="61907" originalCompressionType="lossless" quality="50" href="images/tools/cuff.png" bitmapDataHRef="M 15 1307561266.dat" frameRight="6900" frameBottom="4940"/>
           <DOMBitmapItem name="images/actions/cuffedArms/cuffedArmLeft.png" itemID="4df2a0d2-00000281" linkageExportForAS="true" linkageClassName="cuffedArmLeft" sourceExternalFilepath="./LIBRARY/images/actions/cuffedArms/cuffedArmLeft.png" sourceLastImported="1307746410" externalFileCRC32="1895993168" externalFileSize="28294" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="images/actions/cuffedArms/cuffedArmLeft.png" bitmapDataHRef="M 32 1307746514.dat" frameRight="4980" frameBottom="4780"/>
           <DOMBitmapItem name="images/actions/cuffedArms/cuffedArmRight.png" itemID="4e092476-0000022d" linkageExportForAS="true" linkageClassName="cuffedArmRight" sourceExternalFilepath="./LIBRARY/images/actions/cuffedArms/cuffedArmRight.png" sourceLastImported="1309221870" externalFileCRC32="3673105633" externalFileSize="32042" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="images/actions/cuffedArms/cuffedArmRight.png" bitmapDataHRef="M 44 1309222006.dat" frameRight="4640" frameBottom="4160"/>
           <DOMBitmapItem name="images/menuBar/notes/chart/data/chartImages/default.png" itemID="4e07d217-00000243" sourceExternalFilepath="./LIBRARY/images/menuBar/notes/chart/data/chartImages/default.png" sourceLastImported="1309131566" externalFileCRC32="2887579014" externalFileSize="32553" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="images/menuBar/notes/chart/data/chartImages/default.png" bitmapDataHRef="M 41 1309135383.dat" frameRight="14620" frameBottom="7840"/>
-          <DOMBitmapItem name="Scenes/doctorFace.jpg" itemID="4e69e4a6-0000038d" sourceExternalFilepath="C:/Users/QuinnBaetz/workspace/Flash/tbigame/tbigame/LIBRARY/Scenes/doctorFace.jpg" sourceLastImported="1315562661" externalFileSize="82098" quality="50" href="Scenes/doctorFace.jpg" bitmapDataHRef="M 118 1313287228.dat" frameRight="16000" frameBottom="12000" isJPEG="true"/>
+          <DOMBitmapItem name="Scenes/doctorFace.jpg" itemID="4e69e4a6-0000038d" linkageExportForAS="true" linkageClassName="doctorFace" sourceExternalFilepath="C:/Users/QuinnBaetz/workspace/Flash/tbigame/tbigame/LIBRARY/Scenes/doctorFace.jpg" sourceLastImported="1315562661" externalFileSize="82098" quality="50" href="Scenes/doctorFace.jpg" bitmapDataHRef="M 118 1313287228.dat" frameRight="16000" frameBottom="12000" isJPEG="true"/>
           <DOMBitmapItem name="images/menuBar/buttons/downArrow.png" itemID="4e65c0e1-000002e0" sourceExternalFilepath="./LIBRARY/images/menuBar/buttons/downArrow.png" sourceLastImported="1315291264" externalFileSize="1890" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="images/menuBar/buttons/downArrow.png" bitmapDataHRef="M 122 1315289884.dat" frameRight="560" frameBottom="480"/>
           <DOMBitmapItem name="images/menuBar/drawer" itemID="4e65bccc-000002c7" linkageExportForAS="true" linkageClassName="drawer" sourceExternalFilepath="./LIBRARY/images/menuBar/drawer.png" sourceLastImported="1315025977" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="images/menuBar/drawer.png" bitmapDataHRef="M 123 1315289884.dat" frameRight="16000" frameBottom="1640"/>
           <DOMBitmapItem name="Scenes/drawer.png" itemID="4def9347-000001f7" sourceExternalFilepath="./LIBRARY/Scenes/drawer.png" sourceLastImported="1307546395" externalFileCRC32="906036752" externalFileSize="41897" originalCompressionType="lossless" quality="50" href="Scenes/drawer.png" bitmapDataHRef="M 21 1307565659.dat" frameRight="16000" frameBottom="12000"/>
@@ -135,6 +135,7 @@
           <DOMBitmapItem name="images/scanner/scanButtonHover.png" itemID="4e69e4a5-00000376" sourceExternalFilepath="./LIBRARY/images/scanner/scanButtonHover.png" sourceLastImported="1315561331" externalFileSize="1589" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="images/scanner/scanButtonHover.png" bitmapDataHRef="M 129 1315562472.dat" frameRight="3340" frameBottom="820"/>
           <DOMBitmapItem name="images/scanner/scanButtonUp.png" itemID="4e69e4a5-00000377" sourceExternalFilepath="./LIBRARY/images/scanner/scanButtonUp.png" sourceLastImported="1315561331" externalFileSize="1682" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="images/scanner/scanButtonUp.png" bitmapDataHRef="M 130 1315562472.dat" frameRight="3340" frameBottom="820"/>
           <DOMBitmapItem name="Scenes/Scene_CTQuiz.png" itemID="4e69e4a7-0000038e" sourceExternalFilepath="C:/Users/QuinnBaetz/workspace/Flash/tbigame/tbigame/LIBRARY/Scenes/Scene_CTQuiz.png" sourceLastImported="1315562661" externalFileSize="9133" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="Scenes/Scene_CTQuiz.png" bitmapDataHRef="M 117 1313287167.dat" frameRight="16000" frameBottom="12000"/>
+          <DOMBitmapItem name="Scenes/Scene_CTScan.png" itemID="4e6a0c07-000002ce" sourceExternalFilepath="./LIBRARY/Scenes/Scene_CTScan.png" sourceLastImported="1315572622" externalFileSize="33342" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="Scenes/Scene_CTScan.png" bitmapDataHRef="M 160 1315572696.dat" frameRight="16000" frameBottom="12000"/>
           <DOMBitmapItem name="images/MRI/images/skull2green.png" itemID="4e4733b2-00000418" sourceExternalFilepath="C:/Users/QuinnBaetz/workspace/Flash/tbigame/tbigame/LIBRARY/images/MRI/images/skull2green.png" sourceLastImported="1313287292" externalFileSize="29005" originalCompressionType="lossless" quality="50" href="images/MRI/images/skull2green.png" bitmapDataHRef="M 107 1313285243.dat" frameRight="4240" frameBottom="5440"/>
           <DOMBitmapItem name="images/MRI/images/skull2pink.png" itemID="4e4733b2-00000419" sourceExternalFilepath="C:/Users/QuinnBaetz/workspace/Flash/tbigame/tbigame/LIBRARY/images/MRI/images/skull2pink.png" sourceLastImported="1313287292" externalFileSize="48615" originalCompressionType="lossless" quality="50" href="images/MRI/images/skull2pink.png" bitmapDataHRef="M 106 1313285240.dat" frameRight="4240" frameBottom="5440"/>
           <DOMBitmapItem name="images/MRI/images/skull2white.png" itemID="4e4733b2-0000041a" sourceExternalFilepath="C:/Users/QuinnBaetz/workspace/Flash/tbigame/tbigame/LIBRARY/images/MRI/images/skull2white.png" sourceLastImported="1313287292" externalFileSize="56371" originalCompressionType="lossless" quality="50" href="images/MRI/images/skull2white.png" bitmapDataHRef="M 105 1313285235.dat" frameRight="4240" frameBottom="5440"/>
@@ -231,7 +232,7 @@
           <Include href="images/MRI/ct/skull.xml" itemID="4e383d17-00000255" lastModified="1313285461"/>
           <Include href="images/MRI/ct/temporalLobe.xml" itemID="4e3887f0-000002a3" lastModified="1313285277"/>
           <Include href="images/MRI/ct/thalamus.xml" itemID="4e388832-000002b9" lastModified="1313285295"/>
-          <Include href="images/scanner/popupBox.xml" loadImmediate="false" itemID="4e69e4b1-00000390" lastModified="1315562937"/>
+          <Include href="images/scanner/popupBox.xml" itemID="4e69e4b1-00000390" lastModified="1315564893"/>
           <Include href="images/scanner/progressBar.xml" itemID="4e69e596-000003b4" lastModified="1315562920"/>
           <Include href="images/scanner/scanButton.xml" itemIcon="0" loadImmediate="false" itemID="4e69e470-00000352" lastModified="1315562655"/>
           <Include href="lungs.xml" loadImmediate="false" itemID="4e07dc98-00000343" lastModified="1309138072"/>
@@ -245,10 +246,11 @@
           <Include href="Symbol 61.xml" itemIcon="1" loadImmediate="false" itemID="4e69e3e8-000002aa" lastModified="1315562472"/>
           <Include href="Symbol 62.xml" itemIcon="1" loadImmediate="false" itemID="4e69e3e8-000002af" lastModified="1315562472"/>
           <Include href="Symbol 63.xml" itemIcon="1" loadImmediate="false" itemID="4e69e3e8-000002b4" lastModified="1315562472"/>
+          <Include href="Symbol 603.xml" itemIcon="1" loadImmediate="false" itemID="4e6a0bd8-000002c4" lastModified="1315572696"/>
           <Include href="thermometerCheck.xml" itemID="4e1a6071-0000023d" lastModified="1310523239"/>
      </symbols>
      <timelines>
-          <DOMTimeline name="Scene 1" currentFrame="11">
+          <DOMTimeline name="Scene 1" currentFrame="12">
                <layers>
                     <DOMLayer name="scripts" color="#9933CC" autoNamed="false">
                          <frames>
@@ -367,8 +369,10 @@
                                         <DOMBitmapInstance libraryItemName="Scenes/Scene_CTQuiz.png"/>
                                    </elements>
                               </DOMFrame>
-                              <DOMFrame index="12" keyMode="9728">
-                                   <elements/>
+                              <DOMFrame index="12" name="Scene_CTScan" labelType="name" keyMode="9728">
+                                   <elements>
+                                        <DOMBitmapInstance libraryItemName="Scenes/Scene_CTScan.png"/>
+                                   </elements>
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
@@ -377,25 +381,25 @@
      </timelines>
      <PrinterSettings/>
      <publishHistory>
-          <PublishItem publishSize="2238293" publishTime="1315562369"/>
-          <PublishItem publishSize="2237020" publishTime="1315548681"/>
-          <PublishItem publishSize="2237013" publishTime="1315548667"/>
-          <PublishItem publishSize="2237008" publishTime="1315548633"/>
-          <PublishItem publishSize="2236943" publishTime="1315548394"/>
-          <PublishItem publishSize="2236937" publishTime="1315547551"/>
-          <PublishItem publishSize="2237468" publishTime="1315547426"/>
-          <PublishItem publishSize="2237460" publishTime="1315547348"/>
-          <PublishItem publishSize="2237460" publishTime="1315547158"/>
-          <PublishItem publishSize="2237457" publishTime="1315547090"/>
-          <PublishItem publishSize="2237990" publishTime="1315547048"/>
-          <PublishItem publishSize="2234957" publishTime="1315291105"/>
-          <PublishItem publishSize="2234966" publishTime="1315291013"/>
-          <PublishItem publishSize="2234952" publishTime="1315290840"/>
-          <PublishItem publishSize="2234997" publishTime="1315290809"/>
-          <PublishItem publishSize="2208855" publishTime="1315290787"/>
-          <PublishItem publishSize="2233272" publishTime="1315290655"/>
-          <PublishItem publishSize="2233277" publishTime="1315290633"/>
-          <PublishItem publishSize="2233269" publishTime="1315290620"/>
-          <PublishItem publishSize="2233257" publishTime="1315290606"/>
+          <PublishItem publishSize="2253353" publishTime="1315571918"/>
+          <PublishItem publishSize="2253351" publishTime="1315571757"/>
+          <PublishItem publishSize="2223837" publishTime="1315571729"/>
+          <PublishItem publishSize="2223839" publishTime="1315571685"/>
+          <PublishItem publishSize="2252847" publishTime="1315569350"/>
+          <PublishItem publishSize="2252823" publishTime="1315569283"/>
+          <PublishItem publishSize="2252831" publishTime="1315569188"/>
+          <PublishItem publishSize="2252821" publishTime="1315569163"/>
+          <PublishItem publishSize="2252807" publishTime="1315569104"/>
+          <PublishItem publishSize="2252806" publishTime="1315569072"/>
+          <PublishItem publishSize="2252805" publishTime="1315569047"/>
+          <PublishItem publishSize="2252811" publishTime="1315568976"/>
+          <PublishItem publishSize="2252801" publishTime="1315568588"/>
+          <PublishItem publishSize="2252804" publishTime="1315568502"/>
+          <PublishItem publishSize="2223834" publishTime="1315568437"/>
+          <PublishItem publishSize="2223837" publishTime="1315568409"/>
+          <PublishItem publishSize="2223835" publishTime="1315568389"/>
+          <PublishItem publishSize="2223832" publishTime="1315568310"/>
+          <PublishItem publishSize="2223834" publishTime="1315568285"/>
+          <PublishItem publishSize="2251917" publishTime="1315565569"/>
      </publishHistory>
 </DOMDocument>

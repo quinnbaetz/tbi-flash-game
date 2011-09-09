@@ -1,4 +1,4 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/scanner/popupBox" itemID="4e69e4b1-00000390" lastModified="1315562937">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/scanner/popupBox" itemID="4e69e4b1-00000390" linkageExportForAS="true" linkageClassName="popupBox" lastModified="1315564893">
   <timeline>
     <DOMTimeline name="popupBox" currentFrame="1">
       <layers>
@@ -59,7 +59,7 @@
                     <Matrix tx="15.5" ty="87.5"/>
                   </matrix>
                 </DOMBitmapInstance>
-                <DOMSymbolInstance libraryItemName="images/scanner/progressBar" name="scanProgress" centerPoint3DX="16.45" centerPoint3DY="108">
+                <DOMSymbolInstance libraryItemName="images/scanner/progressBar" name="scanProgress" selected="true" centerPoint3DX="16.45" centerPoint3DY="108">
                   <matrix>
                     <Matrix tx="15" ty="87.5"/>
                   </matrix>

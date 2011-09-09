@@ -69,6 +69,7 @@ function fade(callback = null, type = true){
 		if(callback != null){
 			callback();
 		}
+		stage.removeChild(sprite);
 	});
 	stage.addEventListener(MouseEvent.CLICK, adv);
 	stage.addChild(sprite);

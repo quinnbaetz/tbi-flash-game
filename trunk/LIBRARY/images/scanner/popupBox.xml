@@ -1,0 +1,107 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/scanner/popupBox" itemID="4e69e4b1-00000390" lastModified="1315562937">
+  <timeline>
+    <DOMTimeline name="popupBox" currentFrame="1">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance libraryItemName="images/scanner/popupBox.jpg">
+                  <matrix>
+                    <Matrix tx="0.3" ty="0.3"/>
+                  </matrix>
+                </DOMBitmapInstance>
+                <DOMDynamicText width="303" height="23.25" lineType="multiline">
+                  <matrix>
+                    <Matrix tx="2" ty="35.3"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>Click To Load Imagery.</characters>
+                      <textAttrs>
+                        <DOMTextAttrs alignment="center" aliasText="false" size="21" bitmapSize="420" face="TimesNewRomanPSMT"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMDynamicText>
+                <DOMSymbolInstance libraryItemName="images/scanner/scanButton" name="scanButton" symbolType="button">
+                  <matrix>
+                    <Matrix tx="75" ty="85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="1" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance libraryItemName="images/scanner/popupBox.jpg">
+                  <matrix>
+                    <Matrix tx="0.3" ty="0.3"/>
+                  </matrix>
+                </DOMBitmapInstance>
+                <DOMDynamicText width="303" height="23.25" lineType="multiline">
+                  <matrix>
+                    <Matrix tx="2" ty="35.3"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>Scanning...</characters>
+                      <textAttrs>
+                        <DOMTextAttrs alignment="center" aliasText="false" size="21" bitmapSize="420" face="TimesNewRomanPSMT"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMDynamicText>
+                <DOMBitmapInstance libraryItemName="images/scanner/scanBarBG.png">
+                  <matrix>
+                    <Matrix tx="15.5" ty="87.5"/>
+                  </matrix>
+                </DOMBitmapInstance>
+                <DOMSymbolInstance libraryItemName="images/scanner/progressBar" name="scanProgress" centerPoint3DX="16.45" centerPoint3DY="108">
+                  <matrix>
+                    <Matrix tx="15" ty="87.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="1.45" y="20.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="2" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance libraryItemName="images/scanner/popupBox.jpg">
+                  <matrix>
+                    <Matrix tx="0.3" ty="0.3"/>
+                  </matrix>
+                </DOMBitmapInstance>
+                <DOMDynamicText width="303" height="23.25" lineType="multiline">
+                  <matrix>
+                    <Matrix tx="2" ty="35.3"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>Click To Load Imagery.</characters>
+                      <textAttrs>
+                        <DOMTextAttrs alignment="center" aliasText="false" size="21" bitmapSize="420" face="TimesNewRomanPSMT"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMDynamicText>
+                <DOMSymbolInstance libraryItemName="images/scanner/scanButton" symbolType="button">
+                  <matrix>
+                    <Matrix tx="75" ty="85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

@@ -11,7 +11,7 @@
                     <Matrix tx="0.85" ty="0.85"/>
                   </matrix>
                 </DOMBitmapInstance>
-                <DOMDynamicText name="tempReading" selected="true" width="123" height="42.5" isSelectable="false">
+                <DOMDynamicText name="tempReading" selected="true" width="123" height="48.05" isSelectable="false">
                   <matrix>
                     <Matrix a="0.987655639648438" b="0.15643310546875" c="-0.15643310546875" d="0.987655639648438" tx="142.7" ty="251.9"/>
                   </matrix>

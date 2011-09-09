@@ -17,15 +17,15 @@
 		var msgBox;  
 		var textMsg:TextField;
 		var textAnswers;
-		function addBorder(e){
-			e.relatedObject.border = true;
+		function bindCallback(num, callback){
+			return function(){
+				remove();
+				callback(num);
+			}
 		}
 		
-		function removeBorder(e){
-			e.relatedObject.border = false;
-		}
 		
-		function Picker(theStage, x, y, str, choices){
+		function Picker(theStage, x, y, str, choices, callback){
 			//should add in word wrap
 			//create text
 			var format:TextFormat = new TextFormat();
@@ -62,6 +62,7 @@
 				//Not working right
 				//temp.addEventListener(MouseEvent.ROLL_OVER, addBorder, false, 0, true);
 				//temp.addEventListener(MouseEvent.ROLL_OUT, removeBorder, false, 0, true);
+				temp.addEventListener(MouseEvent.CLICK, bindCallback(i+1, callback));
 				
 				textAnswers.push(temp);
 				
@@ -92,9 +93,12 @@
 		}
 		
 		public function remove(){
+			trace("remove msgBox");
 			theStage.removeChild(msgBox);
+			trace("remove textMsg");
 			theStage.removeChild(textMsg);
 			for(var i in textAnswers){
+				trace("remove msgBox", i);
 				theStage.removeChild(textAnswers[i]); 
 			}
 		}

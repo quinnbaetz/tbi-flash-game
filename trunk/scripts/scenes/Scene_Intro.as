@@ -56,6 +56,8 @@ switch(timeline){
 		
 		
 	break;
+	default:
+		return;
 };
 
 

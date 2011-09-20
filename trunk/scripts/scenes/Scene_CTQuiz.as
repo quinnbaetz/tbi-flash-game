@@ -47,7 +47,7 @@ var doctorDialog = function(callback){
 							 "Before we get started lets refresh what you learned in medical school.",
 							 "First let’s explore some of the anatomical landmarks of a healthy brain.",
 							 "The CT scans will appear on the right and a diagram of a brain will appear on the left.",
-							 "Click the “Load Imagery” button to begin.");
+							 "Click the “Begin” button to get started.");
 							 
 	displayMessages(messages, 50, 60, callback, false, "doctorFace");
 		

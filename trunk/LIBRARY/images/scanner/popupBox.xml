@@ -1,4 +1,4 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/scanner/popupBox" itemID="4e69e4b1-00000390" linkageExportForAS="true" linkageClassName="popupBox" lastModified="1315574602">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/scanner/popupBox" itemID="4e69e4b1-00000390" linkageExportForAS="true" linkageClassName="popupBox" lastModified="1316247358">
   <timeline>
     <DOMTimeline name="popupBox" currentFrame="2">
       <layers>
@@ -17,7 +17,7 @@
                   </matrix>
                   <textRuns>
                     <DOMTextRun>
-                      <characters>Click To Load Imagery.</characters>
+                      <characters>Click to start review.</characters>
                       <textAttrs>
                         <DOMTextAttrs alignment="center" aliasText="false" size="21" bitmapSize="420" face="TimesNewRomanPSMT"/>
                       </textAttrs>
@@ -41,7 +41,7 @@
                     <Matrix tx="0.3" ty="0.3"/>
                   </matrix>
                 </DOMBitmapInstance>
-                <DOMDynamicText selected="true" width="303" height="23.25" lineType="multiline">
+                <DOMDynamicText width="303" height="23.25" lineType="multiline">
                   <matrix>
                     <Matrix tx="2" ty="35.3"/>
                   </matrix>
@@ -76,13 +76,13 @@
                     <Matrix tx="0.3" ty="0.3"/>
                   </matrix>
                 </DOMBitmapInstance>
-                <DOMDynamicText width="303" height="23.25" lineType="multiline">
+                <DOMDynamicText selected="true" width="303" height="23.25" lineType="multiline">
                   <matrix>
                     <Matrix tx="2" ty="35.3"/>
                   </matrix>
                   <textRuns>
                     <DOMTextRun>
-                      <characters>Click To Operate the CT Scanner.</characters>
+                      <characters>Click to start the CT scanner.</characters>
                       <textAttrs>
                         <DOMTextAttrs alignment="center" aliasText="false" size="21" bitmapSize="420" face="TimesNewRomanPSMT"/>
                       </textAttrs>

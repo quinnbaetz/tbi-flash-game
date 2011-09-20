@@ -86,7 +86,9 @@ function displayMessages(msgArr, msgX, msgY, callback, msgType = false, image=fa
 			msg = new Message(stage, msgX, msgY, msgArr[msgNum], msgType, image);
 		}else{
 			stage.removeEventListener(MouseEvent.MOUSE_DOWN, arguments.callee);
-			callback();
+			if(typeof(callback) === "function"){
+				callback();
+			}
 		}
 	});
 }

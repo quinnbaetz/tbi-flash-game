@@ -69,14 +69,15 @@ var doctorDialogReview = function(callback){
 };
 
 var doctorDialogTest = function(callback){
-	var messages = new Array("Ok, match the terms that appear below with the highlighted brain region on the CT image.","Identifying a region correctly will display extra information about that brain region.");
+	var messages = new Array("Ok, match the terms that appear below with the brain region on the CT image. Move your mouse over the scan to see the regions you can select, then click the region you think matches the term to mark your answer.",
+							 "Identifying a region correctly will display extra information about that brain region.");
 
 	displayMessages(messages, 50, 60, callback, false, "doctorFace");
 	
 };
 
 var doctorDialogFinished = function(callback){
-	var messages = new Array("Looks like you listened during class! Let’s move on to the patient’s scans.");
+	var messages = new Array("Looks like you listened during class! Now that you are familiar with a healthy brain, Let’s move on to the patient’s scans.");
 	displayMessages(messages, 50, 60, callback, false, "doctorFace");
 	
 };
@@ -222,6 +223,23 @@ var resetBrains = function(){
 	}
 };
 var takeTest = function(callback){
+	/*for each(var part in names){
+		brain[part.id].x = -800;
+		createTween(ct[part.id+"2"], "x", None.easeInOut, ct[part.id+"2"].x-250);
+	}*/
+	
+	names = shuffle(names);
+	
+	var myTween = createTween(brain, "alpha", None.easeInOut, 0, -1, 20, function(){
+		//just so it doesn't get in the way
+		brain.x = -800;
+		myTween = createTween(ct, "x", None.easeInOut, ct.x-250, -1, 50, function(){
+			myTween = null;  
+		});
+		pName.x += 200;
+	});
+	
+	
 	var reviewMouseMove = function(event){
 		var hit = false;
 		for each(var part in names){
@@ -245,8 +263,10 @@ var takeTest = function(callback){
 	var firstClickIgnore = true;
 	var num = 0;
 	var lostTime = false;
-	var flashDelay = function(id, msg){
-		delayTimer = timer(2000, function(){
+	var delayTimer = null;
+	var flashDelay = function(id, msg, time){
+		delayTimer = timer(time, function(){
+			delayTimer = null;
 			brain[id].gotoAndStop(1);
 			ct[id+"2"].gotoAndStop(1);
 			pName.text = "";
@@ -265,6 +285,16 @@ var takeTest = function(callback){
 			firstClickIgnore = false;
 			return;
 		}
+		if(myTween !== null){
+			myTween.fforward();
+			return;
+		}
+		if(delayTimer !== null){
+			delayTimer.stop();
+			delayTimer.dispatchEvent(new TimerEvent(TimerEvent.TIMER));
+			delayTimer = null;
+			return;
+		}
 		if(num === names.length){
 			stage.removeEventListener(MouseEvent.CLICK, arguments.callee);
 			stage.removeEventListener(MouseEvent.MOUSE_MOVE, reviewMouseMove);
@@ -280,12 +310,14 @@ var takeTest = function(callback){
 				if ((part.brainBitMap.hitTest(new Point(0,0), 0xFF, brain[part.id].globalToLocal(p)) ||
 					part.ctBitMap.hitTest(new Point(0,0), 0xFF, ct[part.id+"2"].globalToLocal(p)))){
 					var msg = null;
+					var msgTime = 2000;
 					if(names[num].id===part.id){
 						brain[part.id].gotoAndStop(4);
 						ct[part.id+"2"].gotoAndStop(4);
 						desc.text = part.desc;
 						pName.text = part.name;
 						lostTime = false;
+						msgTime = 10000;
 						num++;
 					}else{
 						brain[part.id].gotoAndStop(3);
@@ -296,7 +328,7 @@ var takeTest = function(callback){
 						lostTime = true;
 						msg = new Message(stage, 50, 60, "Try matching that once again…", false, "doctorFace");
 					}
-					flashDelay(part.id, msg);
+					flashDelay(part.id, msg, msgTime);
 					break;
 				}
 			}
@@ -333,15 +365,16 @@ switch(timeline){
 			});
 		};
 		
-		var pbox = createPopupBox();
+		var pbox;
 		doctorDialog(function(){
+			pbox = createPopupBox();
 			pbox.scanButton.addEventListener(MouseEvent.CLICK, function(){
 				 pbox.scanButton.removeEventListener(MouseEvent.CLICK, arguments.callee);
 				 loadImageAnimation(pbox, function(){
 					displayQuiz();
 					doctorDialog2(function(){
 						refresherQuiz(function(){
-							var picker = new Picker(stage, 50, 60, "Ok, now that you have had a chance to look over the landmarks, let’s see how well you remember them.  Do you want to review one last time?",
+							var picker = new Picker(stage, 50, 60, "Ok, now that you have had a chance to look over the landmarks, let’s see how well you can identify them on the CT scan.  Do you want to review one last time?",
 								   new Array("Yes, I’d like to review one last time", "No, I’m ready!"), function(num){
 									   trace("response from click", num);
 									   if(num===1){

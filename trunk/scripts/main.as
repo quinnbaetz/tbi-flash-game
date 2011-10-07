@@ -16,7 +16,7 @@ var toolbox;
 var lastFrame = 0;
 var timeline = 0;
 var clock;
-var DEBUG = true;
+var DEBUG = false;
 var SCENE = 2;
 //used in heli scene
 var toolOrder = new Array("stethoscope");

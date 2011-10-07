@@ -1,7 +1,9 @@
 ﻿trace("---", timeline);
 switch(timeline){
 	case 50:
-		 
+		sounds['scene2'] = playSound("sound_scene2", int.MAX_VALUE);
+		tweenSound(sounds['scene2'], .8, 0, 10000);
+		
 		fadeIn(function(){
 			stage.addEventListener(MouseEvent.CLICK, function(){
 				stage.removeEventListener(MouseEvent.CLICK, arguments.callee);

@@ -24,9 +24,9 @@ var doctorDialogIntro = function(callback){
 
 var doctorDialogInstruction = function(callback){
 	
-	var messages = new Array(/*"You’ll need to look for inconsistencies between the patient’s and the reference brain.",*/
+	var messages = new Array("You’ll need to look for irregularities in the patient’s brain.",
 							 "Click and hold your left mouse button to draw a box around any abnormalities in the patient’s brain.",
-							 "Do this for each scan and then we will classify the damage."); 
+							 "Do this for each scan and then hit “submit” to then classify the damage."); 
 
 	displayMessages(messages, 50, 60, callback, false, "doctorFace");
 	
@@ -120,7 +120,7 @@ var controls2;
 var scanLoc;
 var brain1Txt;
 var brain2Txt;
-var labels = ["Uninjured brain", "Coup-contrecoup",  "Diffuse axonal injury", "Subdural hematoma", "Epidural hematoma", "Open brain injury"]
+var labels = ["Uninjured brain", "Coup-contrecoup",  "Diffuse axonal injury", "Subdural hematoma", "Open brain injury", "Epidural hematoma"]
 var format;
 var setUpScanner = function(){
 	brain1 = new ctScanBrainPatient();
@@ -180,19 +180,19 @@ var setUpScanner = function(){
 }
 var markProperOutlines = function(){
 	 if(locs[13] === false){
-		locs[13] = {"x": 324, "y": 190, "width": 25, "height":83};
+		locs[13] = {"x": 324, "y": 190, "width": 25, "height":83, "color": "red"};
 	 }
 	 if(locs[12] === false){
-		locs[12] = {"x": 317, "y": 176, "width": 29, "height":112};
+		locs[12] = {"x": 317, "y": 176, "width": 29, "height":112, "color": "red"};
 	 }
 	 if(locs[11] === false){
-		locs[11] = {"x": 305, "y": 166, "width": 39, "height":134};
+		locs[11] = {"x": 305, "y": 166, "width": 39, "height":134, "color": "red"};
 	 }
 	 if(locs[10] === false){
-		locs[10] = {"x": 318, "y": 181, "width": 29, "height":99};
+		locs[10] = {"x": 318, "y": 181, "width": 29, "height":99, "color": "red"};
 	 }
 	 if(locs[9] === false){
-		locs[9] = {"x": 322, "y": 202, "width": 23, "height":69};
+		locs[9] = {"x": 322, "y": 202, "width": 23, "height":69, "color": "red"};
 	 }	
 }
 
@@ -203,6 +203,13 @@ var outline = function(){
 		trans.y = locs[brain1Frame].y;
 		trans.width = locs[brain1Frame].width;
 		trans.height = locs[brain1Frame].height;
+		var newColour:ColorTransform=trans.transform.colorTransform;
+		if(locs[brain1Frame].color == "red"){
+			newColour.color=0xff0000;
+		}else{
+			newColour.color=0xffffff;
+		}
+		trans.transform.colorTransform=newColour;
 	}else{
 		trans.visible = false;
 		trans.width = 0;
@@ -302,6 +309,8 @@ var endCTScanScene = function(){
 			stage.removeChild(scanLoc);
 			stage.removeChild(brain1Txt);
 			stage.removeChild(brain2Txt);
+			 sounds['scene2'].stop();
+			 sounds['scene2'] = null;
 			gotoAndStop("Scene_Intro");
 		});
 	});
@@ -339,8 +348,9 @@ var damagedSelection = function(){
 
 switch(timeline){
 	case 54:
-		pbox = createPopupScan();
+		
 		doctorDialogIntro(function(){
+			pbox = createPopupScan();
 			pbox.scanButton.addEventListener(MouseEvent.CLICK, function(){
 				 pbox.scanButton.removeEventListener(MouseEvent.CLICK, arguments.callee);
 				 loadImageAnimation(pbox, function(){ 
@@ -353,8 +363,8 @@ switch(timeline){
 								 clock.reduceAngle(penalty);
 							 	 return true;
 							 }else{
-								 doctorDialogTakeOver(damagedSelection);
 								 markProperOutlines();
+								 doctorDialogTakeOver(damagedSelection);
 								 outline();
 								 return false;
 							 }

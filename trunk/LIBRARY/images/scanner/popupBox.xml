@@ -1,6 +1,6 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/scanner/popupBox" itemID="4e69e4b1-00000390" linkageExportForAS="true" linkageClassName="popupBox" lastModified="1316247358">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/scanner/popupBox" itemID="4e69e4b1-00000390" linkageExportForAS="true" linkageClassName="popupBox" lastModified="1320178738">
   <timeline>
-    <DOMTimeline name="popupBox" currentFrame="2">
+    <DOMTimeline name="popupBox" currentFrame="4">
       <layers>
         <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
           <frames>
@@ -76,7 +76,7 @@
                     <Matrix tx="0.3" ty="0.3"/>
                   </matrix>
                 </DOMBitmapInstance>
-                <DOMDynamicText selected="true" width="303" height="23.25" lineType="multiline">
+                <DOMDynamicText width="303" height="23.25" lineType="multiline">
                   <matrix>
                     <Matrix tx="2" ty="35.3"/>
                   </matrix>
@@ -90,6 +90,66 @@
                   </textRuns>
                 </DOMDynamicText>
                 <DOMSymbolInstance libraryItemName="images/scanner/scanButton" name="scanButton" symbolType="button">
+                  <matrix>
+                    <Matrix tx="75" ty="85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="3" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance libraryItemName="images/scanner/popupBox.jpg">
+                  <matrix>
+                    <Matrix tx="0.3" ty="0.3"/>
+                  </matrix>
+                </DOMBitmapInstance>
+                <DOMDynamicText width="303" height="23.25" lineType="multiline">
+                  <matrix>
+                    <Matrix tx="2" ty="35.3"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>Brain damage location</characters>
+                      <textAttrs>
+                        <DOMTextAttrs alignment="center" aliasText="false" size="21" bitmapSize="420" face="TimesNewRomanPSMT"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMDynamicText>
+                <DOMSymbolInstance libraryItemName="images/scanner/submitButton" name="submitButton" symbolType="button">
+                  <matrix>
+                    <Matrix tx="75" ty="85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="4" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance libraryItemName="images/scanner/popupBox.jpg">
+                  <matrix>
+                    <Matrix tx="0.3" ty="0.3"/>
+                  </matrix>
+                </DOMBitmapInstance>
+                <DOMDynamicText width="303" height="48.5" lineType="multiline">
+                  <matrix>
+                    <Matrix tx="2" ty="35.3"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>Brain damage type</characters>
+                      <textAttrs>
+                        <DOMTextAttrs alignment="center" aliasText="false" size="21" bitmapSize="420" face="TimesNewRomanPSMT"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMDynamicText>
+                <DOMSymbolInstance libraryItemName="images/scanner/submitButton" name="submitButton" symbolType="button">
                   <matrix>
                     <Matrix tx="75" ty="85"/>
                   </matrix>

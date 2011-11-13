@@ -24,6 +24,14 @@
 			return a.join(b);
 		}
 		
+		function shuffle (a:Array){
+			var arr2 = [];
+			while (a.length > 0) {
+				arr2.push(a.splice(Math.round(Math.random() * (a.length - 1)), 1)[0]);
+			}
+			return arr2;
+		}
+		
 		function quicksort (a:Array, lo:int, hi:int, compare:Function ){
 			var i=lo, j=hi;
 			var old=a[(int)((lo+hi)/2)];

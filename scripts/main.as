@@ -17,7 +17,7 @@ var lastFrame = 0;
 var timeline = 0;
 var clock;
 var DEBUG = false;
-var SCENE = 2;
+var SCENE = 3;
 //used in heli scene
 var toolOrder = new Array("stethoscope");
 var currentTool = null;
@@ -45,8 +45,13 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 			case 1:
 				if(SCENE===1){
 					gotoAndStop(2);
-				}else{
+				}
+				if(SCENE===2){
 					gotoAndStop(11);
+					SCENE=1;
+				}
+				if(SCENE===3){
+					gotoAndStop(14);
 					SCENE=1;
 				}
 				break;
@@ -55,9 +60,15 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 					gotoAndStop(2);
 					trace("intro scene");
 					include "scenes/Scene_Intro.as";
-				}else{
+				}
+				if(SCENE===2){
 					timeline = 50;
 					gotoAndStop(11);
+					SCENE=1;//so that we can call intro scene again
+				}
+				if(SCENE===3){
+					timeline = 100;
+					gotoAndStop(14);
 					SCENE=1;//so that we can call intro scene again
 				}
 				break;
@@ -104,6 +115,10 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 			case 13:
 				trace("ct scan scene");
 				include "scenes/Scene_CTScan.as";
+				break;
+			case 14:
+				trace("surgery patient scene");
+				include "scenes/Scene_SurgeryPatient.as";
 				break;
 			default:
 				trace("No SCript set for scene #" + lastFrame);

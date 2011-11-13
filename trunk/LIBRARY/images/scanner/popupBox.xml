@@ -1,4 +1,4 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/scanner/popupBox" itemID="4e69e4b1-00000390" linkageExportForAS="true" linkageClassName="popupBox" lastModified="1320178738">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="images/scanner/popupBox" itemID="4e69e4b1-00000390" linkageExportForAS="true" linkageClassName="popupBox" lastModified="1321109438">
   <timeline>
     <DOMTimeline name="popupBox" currentFrame="4">
       <layers>
@@ -119,7 +119,7 @@
                     </DOMTextRun>
                   </textRuns>
                 </DOMDynamicText>
-                <DOMSymbolInstance libraryItemName="images/scanner/submitButton" name="submitButton" symbolType="button">
+                <DOMSymbolInstance libraryItemName="images/scanner/submitButton" name="submit_btn" symbolType="button">
                   <matrix>
                     <Matrix tx="75" ty="85"/>
                   </matrix>
@@ -149,7 +149,7 @@
                     </DOMTextRun>
                   </textRuns>
                 </DOMDynamicText>
-                <DOMSymbolInstance libraryItemName="images/scanner/submitButton" name="submitButton" symbolType="button">
+                <DOMSymbolInstance libraryItemName="images/scanner/submitButton" name="submit_btn" symbolType="button">
                   <matrix>
                     <Matrix tx="75" ty="85"/>
                   </matrix>

@@ -24,7 +24,16 @@
 			}
 		}
 		
-		
+		function addBorder(temp){
+			return function(){
+				temp.border = true;
+			}
+		}
+		function removeBorder(temp){
+			return function(){
+				temp.border = false;
+			}
+		}
 		function Picker(theStage, x, y, str, choices, callback){
 			//should add in word wrap
 			//create text
@@ -42,12 +51,12 @@
 			textMsg.width = 420;
 			textMsg.wordWrap = true;
 			textMsg.height = textMsg.textHeight+5;
-			
+			textMsg.selectable = false;
 			textAnswers = new Array();
 			var nextPos = textMsg.y + textMsg.height+5;
 			for(var i = 0; i<choices.length; i++){
 				var temp = new TextField();
-				temp.text  = choices[i];
+				temp.htmlText = "<a href='event:null'>"+choices[i]+"</a>";
 				//textMsg.autoSize = TextFieldAutoSize.LEFT;
 				temp.setTextFormat(format);
 				temp.textColor = 0x000000; 
@@ -56,12 +65,12 @@
 				temp.width = 390;
 				temp.wordWrap = true;
 				temp.height = temp.textHeight+5;
-				
+				temp.selectable = false;
 				nextPos = temp.y + temp.height+5;
 				
 				//Not working right
-				//temp.addEventListener(MouseEvent.ROLL_OVER, addBorder, false, 0, true);
-				//temp.addEventListener(MouseEvent.ROLL_OUT, removeBorder, false, 0, true);
+				temp.addEventListener(MouseEvent.ROLL_OVER, addBorder(temp), false, 0, true);
+				temp.addEventListener(MouseEvent.ROLL_OUT, removeBorder(temp), false, 0, true);
 				temp.addEventListener(MouseEvent.CLICK, bindCallback(i+1, callback));
 				
 				textAnswers.push(temp);

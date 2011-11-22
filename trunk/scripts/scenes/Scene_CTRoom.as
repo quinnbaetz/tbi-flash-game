@@ -15,7 +15,6 @@ switch(timeline){
 		
 		break;
 	case 52:
-		trace("here actually");
 		fadeIn(function(){
 			var monitorRegion:ClickRegion = new ClickRegion(stage, 0, 100, 500, 350);
 			monitorRegion.addEventListener(MouseEvent.MOUSE_DOWN, function(){

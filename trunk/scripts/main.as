@@ -16,8 +16,10 @@ var toolbox;
 var lastFrame = 0;
 var timeline = 0;
 var clock;
+//DEBUGGING PURPOSES
 var DEBUG = false;
-var SCENE = 3;
+//USED TO JUMP TO A SPECIFIC SCENE
+var SCENE = 1;
 //used in heli scene
 var toolOrder = new Array("stethoscope");
 var currentTool = null;
@@ -64,6 +66,7 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 				if(SCENE===2){
 					timeline = 50;
 					gotoAndStop(11);
+					
 					SCENE=1;//so that we can call intro scene again
 				}
 				if(SCENE===3){

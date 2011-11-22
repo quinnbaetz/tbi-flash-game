@@ -160,7 +160,7 @@
 			earChoice(false);		
 		});
 		
-		timeline++;
+		
 		
 	}else{
 		var tweens = new Array();
@@ -404,3 +404,5 @@
 		}
 		leftEyeCheck();
 	}
+	
+	timeline++;

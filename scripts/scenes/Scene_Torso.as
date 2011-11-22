@@ -362,21 +362,28 @@ switch(timeline){
 		}
 		
 		toolbox.bringForward();
-		
+		forceToFront(gauzeTool)
 		stage.addEventListener(MouseEvent.MOUSE_MOVE, function(){
 			maskObject.graphics.drawCircle(mouseX, mouseY, 10);   
 			gauze.mask = maskObject;
 			//trace(mouseX, mouseY);
+			var count = 0;
+			//steps over 20 px intervals making sure we've covered enough
 			for(var xval = 470; xval<600; xval+=20){
 				for(var yval = 350; yval<400; yval+=20){
 					//trace(maskObject.hitTestPoint(xval, yval, true));
 					var point:Point = new Point(xval, yval);
 					if (!gauze.hitTestPoint(point.x, point.y, true)){
-						return;
+						count++;
+						if(count>2){
+							return;
+						}
 					}
 				}
 			}
 			//uncovered the whole thing!
+			maskObject.graphics.drawCircle(WIDTH/2, HEIGHT/2, WIDTH);
+			gauze.mask = maskObject;
 			if(msg!=null){
 				
 				msg.remove();

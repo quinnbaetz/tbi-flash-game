@@ -60,6 +60,11 @@ var doctorDialogTakeOver = function(callback){
 	displayMessages(messages, 50, 60, callback, false, "doctorFace");
 }
 
+var doctorDialogButton = function(callback){
+	var messages = new Array("Make sure you didn’t overlook anything", "We need to be as accurate as possible.");	
+	displayMessages(messages, 50, 60, callback, false, "doctorFace");
+}
+
 var doctorDialogDamaged = function(callback){
 	var messages = new Array("Now we need to classify the type of damage.", "See if you can match the abnormalities in the patient’s scan with examples of known injuries in other scans.", "Click on the image of the damage type shown that matches the patients injuries");	
 	displayMessages(messages, 50, 60, callback, false, "doctorFace");
@@ -309,6 +314,7 @@ var endCTScanScene = function(){
 			stage.removeChild(scanLoc);
 			stage.removeChild(brain1Txt);
 			stage.removeChild(brain2Txt);
+			stage.removeChild(pbox);
 			 sounds['scene2'].stop();
 			 sounds['scene2'] = null;
 			gotoAndStop("Scene_Intro");
@@ -319,9 +325,11 @@ var damagedSelection = function(){
 	stage.removeEventListener(MouseEvent.MOUSE_DOWN, CTDragHandlerWrap);
 	doctorDialogDamaged(function(){
 		var injuryAttemps = 0;
-		brain2.addEventListener(MouseEvent.CLICK, function(){
+		pbox.gotoAndStop(5);
+		
+		pbox.submit_btn.addEventListener(MouseEvent.CLICK, function(){
 			if(brain2Frame === 4){
-				brain2.removeEventListener(MouseEvent.CLICK, arguments.callee);
+				pbox.submit_btn.removeEventListener(MouseEvent.CLICK, arguments.callee);
 				endCTScanScene();
 			}else{
 				++injuryAttemps;
@@ -335,6 +343,7 @@ var damagedSelection = function(){
 						clock.reduceAngle(penalty);
 						brain2.gotoAndStop(4);
 						doctorDialogInjuryWrongSecond(function(){
+							pbox.submit_btn.removeEventListener(MouseEvent.CLICK, arguments.callee);
 							endCTScanScene();
 						});
 					break;
@@ -370,12 +379,32 @@ switch(timeline){
 							 }
 							 
 						 };
+						 var notSpeaking = function(){
+							speaking = false;
+					 	 }
+						 stage.addChild(pbox);
+						 pbox.gotoAndStop(4);
+						 pbox.x = 420;
+						 pbox.y = 20;
+						 pbox.submit_btn.addEventListener(MouseEvent.CLICK, function(){
+							if(!speaking){
+								if(damageCount === 5){
+									pbox.submit_btn.removeEventListener(MouseEvent.CLICK, arguments.callee);
+									damagedSelection();
+								}else{
+									if(penalize()){
+										speaking = true;
+										doctorDialogButton(notSpeaking);  
+									}else{
+										pbox.submit_btn.removeEventListener(MouseEvent.CLICK, arguments.callee);
+									}
+								}
+							}
+						});
 						 setUpDragging(function(x, y, width, height){
 							//if not on an injured frame
 							speaking = true;
-							var notSpeaking = function(){
-								speaking = false;
-							}
+							
 							if(brain1Frame<9 || brain1Frame>13){
 								if(penalize()){
 									doctorDialogWrongImage(notSpeaking);
@@ -391,11 +420,11 @@ switch(timeline){
 							}
 							if(335>x && 335<x+width && 230>y && 230 < y + height){
 								damageCount++;
-								if(damageCount === 5){
-									damagedSelection();
-								}else{
-									doctorDialogCorrect(notSpeaking);
-								}
+								//if(damageCount === 5){
+								//	damagedSelection();
+								//}else{
+								doctorDialogCorrect(notSpeaking);
+								//}
 								return true;
 							}else{
 								if(penalize()){

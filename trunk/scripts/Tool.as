@@ -23,6 +23,7 @@
 			toolRect = addImage("slot", index*75+100, 531);
 			toolRect.width = 70;
 			toolRect.height = 70;
+			
 			//toolRect.x = index*72+100;
 			//toolRect.y = 531;
 			//toolRect.graphics.endFill();
@@ -41,14 +42,18 @@
 		function hide(){
 			toolRect.alpha = 0;
 		}
-		public function addTool(toolName, tool){
+		public function addTool(toolName, tool, options=undefined){
 			this.toolName = toolName;
 			this.tool = tool;
 			tool.x = 5;
 			tool.y = 5;
 			tool.width = toolRect.width-6;
 			tool.height = toolRect.height-6;
-			
+			if(typeof(options)!=="undefined"){
+				for(var prop in options){
+					tool[prop] = options[prop];
+				}
+			}
 			/*var tt:Tooltip = new Tooltip(0xFFFFEC,0x000000);
 			toolRect.onRollOver = function(evt) {
 				tt.showTip(toolName, evt);

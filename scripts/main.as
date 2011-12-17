@@ -19,10 +19,11 @@ var clock;
 //DEBUGGING PURPOSES
 var DEBUG = false;
 //USED TO JUMP TO A SPECIFIC SCENE
-var SCENE = 1;
+var SCENE = 3;
 //used in heli scene
 var toolOrder = new Array("stethoscope");
 var currentTool = null;
+var theStage = stage;
 var tt = new Tooltip(0xFFFFEC,0x000000, stage);
 var sounds = new Array();
 toolbox = new Toolbox(stage);
@@ -122,6 +123,14 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 			case 14:
 				trace("surgery patient scene");
 				include "scenes/Scene_SurgeryPatient.as";
+				break;
+			case 15:
+				trace("surgery surgeon scene");
+				include "scenes/Scene_SurgeonFace.as";
+				break;
+			case 16:
+				trace("surgery scene tray");
+				include "scenes/Scene_SurgeryTray.as";
 				break;
 			default:
 				trace("No SCript set for scene #" + lastFrame);

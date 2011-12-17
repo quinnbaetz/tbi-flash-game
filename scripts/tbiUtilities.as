@@ -33,8 +33,9 @@ function resetTools(){
 		if(!tool.empty){
 			var tName = tool.toolName;
 			var temp = addImage(tool.toolName, tool.tool.x, tool.tool.y);
+			var props = {"width":tool.tool.width, "x":tool.tool.x}
 			tool.removeTool();
-			tool.addTool(tName, temp); 
+			tool.addTool(tName, temp, props); 
 		}
 	}
 }
@@ -103,3 +104,32 @@ function playSound(className, repitions = 1, startPoint = 0, vol=1){
 	someChannel = sound.play(startPoint, repitions,someTransform);
 	return someChannel;
 }
+
+//waits for the user to click or press spacebar to call the callback
+function waitOnUser(callback){
+	var removeListeners = function(){
+		stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyWrapper);
+		stage.removeEventListener(MouseEvent.CLICK, clickWrapper);
+	}
+	var clickWrapper = function(e){
+		removeListeners();
+		callback(e);
+	}
+	var keyWrapper = function(e){
+		if (e.keyCode == Keyboard.SPACE){
+			clickWrapper(e);
+		}
+	}	
+	stage.addEventListener(KeyboardEvent.KEY_DOWN, keyWrapper);
+	stage.addEventListener(MouseEvent.CLICK, clickWrapper); 
+	return {
+		kill: function(){
+			removeListeners();
+		},
+		finish: function(){
+			clickWrapper();
+		}
+	}
+	
+}
+

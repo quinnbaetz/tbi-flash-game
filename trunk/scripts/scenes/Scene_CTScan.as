@@ -282,7 +282,9 @@ var CTDragHandlerWrap = function(callback){
 			stage.addEventListener(MouseEvent.MOUSE_UP, function(){
 				dragging = false;
 				if(callback(trans.x, trans.y, trans.width, trans.height)){
-					locs[brain1Frame] = {"x": trans.x, "y": trans.y, "width": trans.width, "height": trans.height};
+					if(locs[brain1Frame] === false){
+						locs[brain1Frame] = {"x": trans.x, "y": trans.y, "width": trans.width, "height": trans.height};
+					}
 				}else{
 					trans.visible = false;
 					trans.width = 0;
@@ -374,6 +376,8 @@ switch(timeline){
 							 }else{
 								 markProperOutlines();
 								 doctorDialogTakeOver(damagedSelection);
+								 brain1.gotoAndStop(brain1Frame);
+								 scanLoc.gotoAndStop(brain1Frame);
 								 outline();
 								 return false;
 							 }

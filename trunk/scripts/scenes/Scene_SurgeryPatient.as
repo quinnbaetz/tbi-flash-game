@@ -1,8 +1,12 @@
 ﻿(function(){
- 	var userLine;
-						
  	var mouseUpCallback = function(tool, x, y, index, callback){
 		return function(e){
+			trace(tool.y);
+			if(tool.y>-70){
+				createTween(tool, "x", Regular.easeInOut, x);
+				createTween(tool, "y", Regular.easeInOut, y);
+				return
+			}
 			currentTool = toolbox.tools[index].toolName;
 			var tempx = tool.x;
 			var tempy = tool.y;
@@ -12,7 +16,7 @@
 			tool.y = tempy;
 			
 			createTween(tool, "x", Regular.easeInOut, x);
-			createTween(tool, "y", Regular.easeInOut, y);
+			createTween(tool, "y", Regular.easeInOut, y+100);
 			callback(true);
 		}
 	};
@@ -38,6 +42,9 @@
 				//tt.buttonMode = true;
 				//tt.useHandCursor = true;
 				tool.tool.addEventListener(MouseEvent.ROLL_OVER,rollOverTT(tool.tool, tool.toolName));
+				tool.tool.addEventListener(MouseEvent.ROLL_OUT,function(){
+					tt.removeTip();   
+				});
 				if(tool.toolName===toUse){
 					makeDraggable(tool.tool, function(evt){
 						rollovers = false;
@@ -52,6 +59,32 @@
 		}	
 	}
 	
+	//If we should have tools but don't
+	if(timeline>100 && toolbox.isEmpty()){
+		//add the tools
+		for(var index in tbi.surgeonToolData){
+			var tempTool = addImage(tbi.surgeonToolData[index].className, 0, 0);
+			var space = toolbox.getNextEmpty();
+			var vWidth = 0;
+			var vHeight = 0;
+			var vx = 0;
+			var vy = 0;
+			if(tempTool.height<tempTool.width){
+				 vHeight = ((space.width-6)/tempTool.width)*tempTool.height;
+				 vWidth = space.width-6;
+				 var diffHeight = space.height-6-vHeight;
+				 vx = space.x+3;
+				 vy = space.y+3+diffHeight/2;
+			 }else{
+				 vWidth = ((space.height-6)/tempTool.height)*tempTool.width;
+				 vHeight = space.height-6;
+				 var diffWidth = space.width-6-vWidth;
+				 vx =  space.x+3+diffWidth/2;
+				 vy = space.y+3;
+			 }
+			space.addTool(tbi.surgeonToolData[index].className, tempTool, {"width":vWidth, "height":vHeight, "x":vx-space.x+6, "y":vy-space.y+6});
+		}
+	}
 	
 	switch(timeline){
 		case 100:
@@ -77,13 +110,14 @@
 		break;
 		case 103:
 			var surgeonDialog = function(callback){
-				var messages = new Array("Use the razor to remove the hair and then",
-									 "apply both the alcohol and iodine solutions to serilize the skin.");
+				var messages = new Array("The ER removed most of the patients hair, but we want the scalp as clean as possible.",
+										 "Use the razor to remove the hair and then",
+									      "apply both the alcohol and iodine solutions to serilize the skin.");
 										 
 				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
 			}
 			var sugeonDialogWrong = function(callback){
-				var messages = new Array("hack to skip","We need to remove any remaining hair before we can continue.");
+				var messages = new Array("We need to remove any remaining hair before we can continue.");
 				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
 			}
 			var hairX = 123;
@@ -122,16 +156,16 @@
 				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
 			}
 			var sugeonDialogWrong = function(callback){
-				var messages = new Array("hack to skip","Make sure the entire scalp has been prepared with alcohol before proceeding.");
+				var messages = new Array("Make sure the entire scalp has been prepared with alcohol before proceeding.");
 				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
 			}
 		
 			surgeonDialog(function(){
 				var firstWrongPick = true;
-				configureTools("betadine", function(choice){
+				configureTools("alcohol", function(choice){
 					if(choice){
-						var scalpX = 118;
-						var scalpY = 20;
+						var scalpX = 124;
+						var scalpY = 17;
 						var pScalp =  addImage("headAlcohol", scalpX, scalpY);
 						include "surgery/alcohol.as";
 					}else{
@@ -153,16 +187,16 @@
 				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
 			}
 			var sugeonDialogWrong = function(callback){
-				var messages = new Array("hack to skip","Make sure you are using the iodine solution to sterilize the scalp.");
+				var messages = new Array("Make sure you are using the iodine solution to sterilize the scalp.");
 				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
 			}
 		
 			surgeonDialog(function(){
 				var firstWrongPick = true;
-				configureTools("betadine", function(choice){
+				configureTools("iodine", function(choice){
 					if(choice){
-						var scalpX = 118;
-						var scalpY = 20;
+						var scalpX = 124;
+						var scalpY = 17;
 						var pScalp =  addImage("headIodine", scalpX, scalpY);
 						include "surgery/alcohol.as";
 					}else{
@@ -185,12 +219,13 @@
 				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
 			}
 			var sugeonDialogWrong = function(callback){
-				var messages = new Array("hack to skip","Before wan can make any incisions we need to clearly mark where to cut.");
+				var messages = new Array("Before wan can make any incisions we need to clearly mark where to cut.");
 				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
 			}
 		
 			surgeonDialog(function(){
 				var firstWrongPick = true;
+				//include "surgery/marker.as";
 				configureTools("marker", function(choice){
 					if(choice){
 						include "surgery/marker.as";
@@ -211,11 +246,12 @@
 				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
 			}
 			var sugeonDialogWrong = function(callback){
-				var messages = new Array("hack to skip","The syringe should be on your prep tray");
+				var messages = new Array("The syringe should be on your prep tray");
 				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
 			}
 		
 			surgeonDialog(function(){
+				//include "surgery/syringe.as";
 				var firstWrongPick = true;
 				configureTools("syringe", function(choice){
 					if(choice){
@@ -229,6 +265,98 @@
 					}
 				});
 			});
+		break;
+		case 109:
+			var mX = 300;
+			var mY = 150;
+			tbi.userLine =  addImage("markerLine", mX, mY);
+			
+			var surgeonDialog = function(callback){
+				var messages = new Array("The patient is now ready for surgery. I will be right here to assist with the procedure.",
+										 "Why don’t you make the first incision?",
+										 "Grab the scalpel and cut along the line you marked earlier.");
+										 
+				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
+			}
+			var sugeonDialogWrong = function(callback){
+				var messages = new Array("We need to get access to the patient’s skull,",
+										 "there is a scalpel ready for you to make the first incision.");
+				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
+			}
+			surgeonDialog(function(){
+				var firstWrongPick = true;
+				configureTools("scalpel", function(choice){
+					if(choice){
+						include "surgery/scalpel.as";
+					}else{
+						if(firstWrongPick){
+							clock.reduceAngle(20);
+							firstWrongPick = false;
+						}
+						sugeonDialogWrong();
+					}
+				});
+			});
+		
+		break;
+		case 110:
+			var skinCut =  addImage("openSkin", 125, 0);
+			skinCut.alpha = 0;
+			addChild(skinCut);
+			var surgeonDialog = function(callback){
+				var messages = new Array("Now, once I’ve pulled back the skin and muscle. You can place the Raney clips along the incision to control the bleeding.",
+										 "Take the clips and make sure to place them evenly along the incision line.");
+										 
+				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
+			}
+			var sugeonDialogWrong = function(callback){
+				var messages = new Array("We need to get access to the patient’s skull,",
+										 "there is a scalpel ready for you to make the first incision.");
+				displayMessages(messages, 50, 60, callback, false, "surgeonFace");
+			}
+			var pullSkin = function(callback){
+				var tweens = new Array();
+				var waiter = null;
+				
+				tweens.push(createTween(tbi.userLine, "alpha", None.easeInOut, 0, -1, 100));
+				tweens.push(createTween(userCutLine, "alpha", None.easeInOut, 0, -1, 100));
+				//tweens.push(createTween(userCutLineBlack, "alpha", None.easeInOut, 0, -1, 100));
+				//tweens.push(createTween(pOutline, "alpha", None.easeInOut, 0, -1, 100, function(){
+				tweens.push(createTween(skinCut, "alpha", None.easeInOut, 1, -1, 100, function(){
+					waiter.kill();
+					callback();
+				}));
+				var firstIgnoreHack = false;
+				waiter = waitOnUser(function(){
+					if(firstIgnoreHack){
+						for(var i in tweens){
+							tweens[i].fforward();
+							tweens[i] = null;
+						}
+						tweens = null;
+					}
+					firstIgnoreHack = true;
+				});
+				
+			}
+			
+			surgeonDialog(function(){
+				pullSkin(function(){
+					var firstWrongPick = true;
+					configureTools("scalpel", function(choice){
+						if(choice){
+							include "surgery/scalpel.as";
+						}else{
+							if(firstWrongPick){
+								clock.reduceAngle(20);
+								firstWrongPick = false;
+							}
+							sugeonDialogWrong();
+						}
+					});
+				});
+			});
+		
 		break;
 	}
 	timeline++;

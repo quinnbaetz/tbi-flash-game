@@ -5,10 +5,12 @@ import tbigame.scripts.Toolbox;
 import tbigame.scripts.Clock;
 import tbigame.scripts.Tool;
 import tbigame.scripts.ClickRegion;
+import flash.external.ExternalInterface;
 include "../../../utility.as";
 include "tbiUtilities.as";
 /*import flash.media.Sound;
 import flash.media.SoundChannel;*/
+var tbi = {};
 var scene =10;
 var HEIGHT = 600;
 var WIDTH = 800;
@@ -30,6 +32,17 @@ toolbox = new Toolbox(stage);
 clock = toolbox.clock;	
 clock.updateAngle(360);
 
+//Globals for surgery
+tbi.userLine = null;
+var userCutLine;
+var userCutLineBlack;
+
+tbi.surgeonToolData = new Array({"className" : "razor", "x": 500, "y" : 60},
+							 {"className" : "marker", "x": 400, "y" : 250},
+							 {"className" : "alcohol", "x": 570, "y" : 250},
+							 {"className" : "iodine", "x": 80, "y" : 130},
+							 {"className" : "syringe", "x": 300, "y" : 100});
+
 if(DEBUG){
 	var text:TextField = new TextField();
 	stage.addEventListener(MouseEvent.MOUSE_MOVE, function(){
@@ -40,41 +53,32 @@ if(DEBUG){
 	});
 	stage.addChild(text);
 }
+ExternalInterface.addCallback("sendToActionscript", callFromJavaScript);
+function callFromJavaScript(scene, time) 
+{
+	lastFrame = -1;
+	timeline = time;
+	gotoAndStop(scene);
+}
+
+
 stage.addEventListener(Event.ENTER_FRAME, function(){
 	if(currentFrame!=lastFrame){
 		lastFrame = currentFrame;
 		trace(lastFrame);
 		switch(lastFrame){
 			case 1:
-				if(SCENE===1){
-					gotoAndStop(2);
-				}
-				if(SCENE===2){
-					gotoAndStop(11);
-					SCENE=1;
-				}
-				if(SCENE===3){
-					gotoAndStop(14);
-					SCENE=1;
-				}
+				gotoAndStop(1);
+				timeline=106;
+				gotoAndStop(14);
 				break;
 			case 2:
-				if(SCENE===1){
-					gotoAndStop(2);
-					trace("intro scene");
-					include "scenes/Scene_Intro.as";
-				}
-				if(SCENE===2){
-					timeline = 50;
-					gotoAndStop(11);
-					
-					SCENE=1;//so that we can call intro scene again
-				}
-				if(SCENE===3){
-					timeline = 100;
-					gotoAndStop(14);
-					SCENE=1;//so that we can call intro scene again
-				}
+				/*if(firstHack){
+					firstHack = false;
+					gotoAndStop(1);
+					return;
+				}*/
+				include "scenes/Scene_Intro.as";
 				break;
 			case 3:
 				trace("arrival scene");
@@ -139,6 +143,7 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 		}
 	}
 });
+gotoAndStop(1);
 /*
 stage.addEventListener(MouseEvent.CLICK, function(){
 	scene=((scene-2)%3)+3;					

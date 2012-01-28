@@ -25,7 +25,6 @@
 		var tweenY = null;
 		return function(){
 			
-			trace("drawTimerFunc");
 			var mousex = mousePos.x;
 			var mousey = mousePos.y;
 			var doDraw = false;
@@ -55,7 +54,20 @@
 				
 				var points = new Vector.<Number>();
 				maskObj.graphics.beginFill(0x00000000);
-				if(tempLeft.y>lastLeft.y){
+				
+				if(tempLeft.x<=lastLeft.x){
+					lastLeft = tempLeft;
+					lastRight = tempRight;
+					return;
+				}
+				
+				points.push(tempLeft.x, tempLeft.y);
+				points.push(tempRight.x, tempRight.y);
+				points.push(lastRight.x, lastRight.y);
+				points.push(lastLeft.x, lastLeft.y);
+				points.push(tempLeft.x, tempLeft.y);
+					
+				/*if(tempLeft.y>lastLeft.y){
 					points.push(tempLeft.x, tempLeft.y);
 				}else{
 					points.push(lastLeft.x, lastLeft.y);
@@ -73,7 +85,7 @@
 				}else{
 					points.push(tempLeft.x, tempLeft.y);
 					points.push(lastLeft.x, lastLeft.y);
-				}
+				}*/
 				
 				
 				

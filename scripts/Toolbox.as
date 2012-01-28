@@ -125,6 +125,14 @@
 			}
 		}
 		
+		public function isEmpty(){
+			for each(var tool in tools){
+				if(!tool.empty){
+					return false;
+				}
+			}
+			return true;
+		}
 		public function getNextEmpty(){
 			for each(var tool in tools){
 				if(tool.empty){
@@ -200,6 +208,13 @@
 			});
 		}
 		
+		public function removeTools(){
+			for each(var tool in tools){
+				if(!tool.empty){
+					tool.removeTool();
+				}
+			}
+		}
 		public function addTool(name, toAdd){
 			var tool = getNextEmpty();
 			tool.addTool(name, toAdd);

@@ -33,7 +33,7 @@ function resetTools(){
 		if(!tool.empty){
 			var tName = tool.toolName;
 			var temp = addImage(tool.toolName, tool.tool.x, tool.tool.y);
-			var props = {"width":tool.tool.width, "x":tool.tool.x}
+			var props = {"width":tool.tool.width, "x":tool.tool.x, "height":tool.tool.height, "y":tool.tool.y}
 			tool.removeTool();
 			tool.addTool(tName, temp, props); 
 		}
@@ -79,19 +79,55 @@ function fade(callback = null, type = true){
 
 function displayMessages(msgArr, msgX, msgY, callback, msgType = false, image=false){
 	var msgNum = 0;
-	var msg:Message = new Message(stage, msgX, msgY, msgArr[0], msgType, image);
-	stage.addEventListener(MouseEvent.MOUSE_DOWN, function(){
-		msg.remove();
+	var msg = null;//:Message = new Message(stage, msgX, msgY, msgArr[0], msgType, image, testState);
+	var cleanup = function(){
+		if(msg){
+			msg.remove();
+		}
+		msg = null;
+	}
+	var advance = function(evt){
+		if(typeof evt !== "undefined"){
+			evt.stopPropagation();
+		}
+		cleanup();
 		msgNum++;
 		if(msgNum<msgArr.length){
-			msg = new Message(stage, msgX, msgY, msgArr[msgNum], msgType, image);
+			showMsg();
 		}else{
-			stage.removeEventListener(MouseEvent.MOUSE_DOWN, arguments.callee);
 			if(typeof(callback) === "function"){
+				stage.removeEventListener(MouseEvent.MOUSE_DOWN, advance);
 				callback();
 			}
 		}
-	});
+	}
+	var previous = function(evt){
+		evt.stopPropagation();
+		cleanup();
+		msgNum=Math.max(0, msgNum-1);
+		showMsg();
+	}
+	var showMsg = function(){
+		var advCallback = null;
+		var prevCallback = null;
+		var ignoreArrow = false;
+		advCallback = advance;
+		trace(msgNum, msgArr.length-1);
+		if(msgNum>=msgArr.length-1){
+			ignoreArrow = true;
+			advCallback = null;
+			stage.addEventListener(MouseEvent.MOUSE_DOWN, advance);
+		}
+		if(msgNum>0){
+			prevCallback = previous;
+		}
+		msg = new Message(stage, msgX, msgY, msgArr[msgNum], msgType, image, advCallback, prevCallback, ignoreArrow);
+	}
+	showMsg();
+	return {
+		msg: msg,
+		advance: advance
+	}
 }
 
 function playSound(className, repitions = 1, startPoint = 0, vol=1){

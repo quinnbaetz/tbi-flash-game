@@ -2,14 +2,17 @@
 import flash.geom.Point;
 
 (function(){
+ 	var ErrorMargin = 10//15;
     var mX = 300;
 	var mY = 150;
-	var pOutline =  addImage("markerOutline", mX-25, mY-25);
+	var pOutline =  addImage("markerOutline", mX-10, mY-12);
 	var pMarker =  addImage("markerDotted", mX, mY);
-	var beginX = pOutline.x + mX-110;
-	var beginY =  pOutline.y + mY-120
-	var endX = pOutline.x + mX-280
-	var endY = pOutline.y + mY+50
+	var pMarkerLine =  addImage("markerLine", mX, mY);
+	tbi.userLine = pMarkerLine;
+	var beginX = pOutline.x + mX-125;
+	var beginY =  pOutline.y + mY-135;
+	var endX = pOutline.x + mX-285;
+	var endY = pOutline.y + mY+50;
 	var pMarkerArm = addImage("markerArm", 0, stage.height);
 	
 	toolbox.bringForward();
@@ -17,11 +20,16 @@ import flash.geom.Point;
 	pMarker.alpha = 0;
 	pOutline.alpha = 0;
 	createTween(pMarker, "alpha", None.easeInOut, .3, -1, 100)
-	createTween(pOutline, "alpha", None.easeInOut, .7, -1, 100)
+	//createTween(pOutline, "alpha", None.easeInOut, .7, -1, 100)
 	var mousePos = {x: WIDTH, y: HEIGHT};
 	var surgeonDialog = function(callback){
 		var messages = new Array("Careful! There’s no room for error, make your incision marks as accurate as possible.");
-		displayMessages(messages, 50, 60, callback, false, "surgeonFace");
+		var msgBox = displayMessages(messages, 50, 60, callback, false, "surgeonFace");
+		setTimeout(function(){
+			createTween(msgBox.msg, "alpha", None.easeInOut, 0, -1, 100, function(){
+				msgBox.advance();		
+			});   
+		}, 1000);
 	};
 	
 	var fadeLines = function(callback){
@@ -29,8 +37,8 @@ import flash.geom.Point;
 		var waiter = null;
 		
 		tweens.push(createTween(pMarkerArm, "y", None.easeInOut, HEIGHT, -1, 100));
-		tweens.push(createTween(pMarker, "alpha", None.easeInOut, 0, -1, 100));
-		tweens.push(createTween(pOutline, "alpha", None.easeInOut, 0, -1, 100, function(){
+		//tweens.push(createTween(pOutline, "alpha", None.easeInOut, 0, -1, 100, function(){
+		tweens.push(createTween(pMarker, "alpha", None.easeInOut, 0, -1, 100, function(){
 			waiter.kill();
 			callback();
 		}));
@@ -46,24 +54,27 @@ import flash.geom.Point;
 	}
 	
 	var createStartPoint = function(){
-		var startPt:MovieClip = new MovieClip();
+		var startPt = {};
+		/*var startPt:MovieClip = new MovieClip();
 		startPt.graphics.beginFill(0xAA00FF00)
-		startPt.graphics.drawCircle(0,0, 15);
-		startPt.graphics.endFill();
+		startPt.graphics.drawCircle(0,0, ErrorMargin);
+		startPt.graphics.endFill();*/
 		startPt.x = beginX;
 		startPt.y = beginY;
-		addChild(startPt);
+		//addChild(startPt);
 		return startPt;
 	};
 	
 	var createEndPoint = function(){
-		var endPt:MovieClip = new MovieClip();
+		var endPt = {};
+		/*var endPt:MovieClip = new MovieClip();
 		endPt.graphics.beginFill(0xAAFF0000)
-		endPt.graphics.drawCircle(0, 0, 15);
-		endPt.graphics.endFill();
+		endPt.graphics.drawCircle(0, 0, ErrorMargin);
+		endPt.graphics.endFill();*/
+		
 		endPt.x = endX;
 		endPt.y = endY;
-		addChild(endPt);
+		//addChild(endPt);
 		return endPt;
 	}
 	var withinBounds = function(x, y){
@@ -77,14 +88,20 @@ import flash.geom.Point;
 	}
 	
 	var startPt = createStartPoint();
-	var endPt;
+	var endPt = createEndPoint();
+	var lastPt = {};
 	var task = 0;
 	var tweenX = null;
 	var tweenY = null;
-	userLine = new MovieClip();
+	var startingPt;
+	
+	var userLine = new MovieClip();
+	
+	userLine.graphics.beginFill(0xFF0000);
+	pMarkerLine.mask = userLine;
+		
 	userLine.x = 0;
 	userLine.y = 0;
-	addChild(userLine);
 	
 	var getMousePos = function(){
 		mousePos.x = mouseX;
@@ -108,22 +125,39 @@ import flash.geom.Point;
 		var firstLoss = true;
 		switch(task){
 			case 0:
+				
 				//waiting for user to go to begining
-				var dist = hypot((startPt.x)-pMarkerArm.x, (startPt.y)-(pMarkerArm.y+30));
-				if(dist<15){
-					remove(startPt);
+				lastPt.x = pMarkerArm.x+5;
+				lastPt.y = pMarkerArm.y+30;
+				var dist1 = hypot((startPt.x)-lastPt.x, (startPt.y)-(lastPt.y));
+				var dist2 = hypot((endPt.x)-lastPt.x, (endPt.y)-(lastPt.y));
+				if((dist1<ErrorMargin || dist2<ErrorMargin) && withinBounds(lastPt.x, (lastPt.y))){
+					if(dist1<ErrorMargin){
+						startingPt = true;
+					}else{
+						startingPt = false;
+					}
+					//remove(startPt);
 					task=1;
-					endPt = createEndPoint();
-					userLine.graphics.lineStyle(10, 0x0000FF);
-					userLine.graphics.moveTo(pMarkerArm.x+10, (pMarkerArm.y+30));
+					userLine.graphics.drawCircle(lastPt.x, lastPt.y, 30);
+					//userLine.graphics.lineStyle(10, 0x0000FF);
+					//userLine.graphics.moveTo(pMarkerArm.x+10, (pMarkerArm.y+30));
 				}   
 			break;
 			case 1:
-				if(withinBounds(pMarkerArm.x+10,(pMarkerArm.y+30))){
-				   userLine.graphics.lineTo(pMarkerArm.x+10, pMarkerArm.y+30);
-				   var dist = hypot((endPt.x)-pMarkerArm.x, (endPt.y)-(pMarkerArm.y+30));
-					if(dist<15){
-						remove(endPt);
+				if(withinBounds(pMarkerArm.x+5,(pMarkerArm.y+30))){
+				   lastPt.x = pMarkerArm.x+5;
+				   lastPt.y = pMarkerArm.y+30;
+				   //userLine.graphics.lineTo(lastPt.x, lastPt.y);
+				   userLine.graphics.drawCircle(lastPt.x, lastPt.y, 13);
+				  
+				   var dist;
+				   if(startingPt === true){
+					   dist = hypot((endPt.x)-lastPt.x, (endPt.y)-(lastPt.y));
+				   }else{
+					   dist = hypot((startPt.x)-lastPt.x, (startPt.y)-(lastPt.y));
+				   }
+				   if(dist<15){
 						task=-1;
 						markerDraw.stop();
 						markerDraw = null;
@@ -132,22 +166,33 @@ import flash.geom.Point;
 							remove(pMarker);
 							remove(pOutline);
 							remove(pMarkerArm);
+							//not working for some reason
+							//pMarkerLine.setMask(null);
+							//userLine = null;
 							lastFrame = -1;
 							gotoAndStop("Scene_SurgeryPatient");
 						});
 					}   
 				}else{
 					task = -1;
-					remove(endPt);
-					surgeonDialog(function(){
-						if(firstLoss){
-							clock.reduceAngle(20);
-							firstLoss = false;
-						}
-						userLine.graphics.clear();
+					if(firstLoss){
+						clock.reduceAngle(20);
+						firstLoss = false;
+					}
+					//userLine.graphics.clear();
+					var myStart = {x: lastPt.x, y: lastPt.y}
+					setTimeout(function(){
 						task=0;
-						startPt = createStartPoint(); 
-					});
+						if(startingPt === true){
+							startPt.x = myStart.x; 
+							startPt.y = myStart.y; 
+						}else{
+							endPt.x = myStart.x; 
+							endPt.y = myStart.y;
+						}
+					}, 300);
+					
+					surgeonDialog();
 				}
 			
 			break;
@@ -155,10 +200,5 @@ import flash.geom.Point;
 		}
 		
 	}, 0);
-	
-	
-	
-	
-	
 	
 })();

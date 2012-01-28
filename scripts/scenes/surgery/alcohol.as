@@ -29,28 +29,27 @@
 			if(tweenX != null){
 				tweenX.stop();
 			}
-			tweenX = createTween(pSwab, "x", None.easeNone, mousex-50);
+			tweenX = createTween(pSwab, "x", None.easeNone, mousex-100);
 			
 			if(tweenY != null){
 				tweenY.stop();
 			}
-			tweenY = createTween(pSwab, "y", None.easeNone, mousey-110);
+			tweenY = createTween(pSwab, "y", None.easeNone, mousey-80);
 				
 			var swabPos ={"x" : mouseX, "y":mouseY};
 			
-			var rad = 30;
+			var rad = 80;
 			if(DEBUG){
 				rad = 100;
 			}
-			
-			maskObj.graphics.drawCircle(pSwab.x+50, pSwab.y+110, rad);
+			//need to update these graphics based o
+			maskObj.graphics.drawCircle(pSwab.x+80, pSwab.y+85, rad);
 			pScalp.mask = maskObj;
 		}
 	}
 	
 	var checkDrawFunc = function(callback){
 		return function(){
-			trace("checkdraw");
 			var count = 0;
 			//steps over 20 px intervals making sure we've covered enough
 			//in a traingle patter

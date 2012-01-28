@@ -10,6 +10,7 @@
 	import flash.display.Bitmap;
 	import flash.utils.getDefinitionByName;
 	import flash.filters.GlowFilter;
+	import flash.events.MouseEvent;
 	public class Message extends MovieClip
 	{
 		
@@ -19,9 +20,18 @@
 		var speakerBorder = false;
 		var maskObject:MovieClip;
 		var textMsg:TextField;
-		function Message(theStage, x, y, str, clouds=false, image=false){
+		var advImage;
+		var prevImage;
+		var advCallback;
+		var prevCallback;
+		var ignoreArrow;
+		function Message(theStage, x, y, str, clouds=false, image=false, forward=null, backward=null, ignoreRightArrow=false){
+			advCallback = forward;
+			prevCallback = backward;
+			ignoreArrow = ignoreRightArrow;
 			//should add in word wrap
 			//create text
+				
 			   var format:TextFormat = new TextFormat();
 			    format.font="Arial";
     			format.size=18;
@@ -64,6 +74,15 @@
 				msgBox.graphics.endFill();
 				msgBox.width=textMsg.textWidth+60;
 				msgBox.height=textMsg.textHeight+75;
+				if((typeof advCallback === "function" && !ignoreArrow)|| typeof prevCallback === "function"){
+					msgBox.height+=50;
+					if(typeof advCallback === "function" && !ignoreArrow){
+						advImage = createImage("arrow_sm_right", x+50, y+textMsg.height+10, 20, 23);
+					}
+					if(typeof prevCallback === "function"){
+						prevImage = createImage("arrow_sm_left", x+25, y+textMsg.height+10, 20, 23);
+					}
+				}
 			
 			}else{
 				msgBox.graphics.lineStyle(2, 0x2a3037);
@@ -89,10 +108,28 @@
 				
 					msgBox.height=Math.max(70, textMsg.textHeight+32);
 					msgBox.width=textMsg.textWidth+30+80;
+					if((typeof advCallback === "function" && !ignoreArrow) || typeof prevCallback === "function"){
+						msgBox.height=Math.max(110, msgBox.height);
+						if(typeof advCallback === "function" && !ignoreArrow){
+							advImage = createImage("arrow_sm_right", x+30, y+80, 20, 23);
+						}
+						if(typeof prevCallback === "function"){
+							prevImage = createImage("arrow_sm_left", x+5, y+80, 20, 23);
+						}
+					}
 					
 				}else{
 					msgBox.height=textMsg.textHeight+32;
 					msgBox.width=textMsg.textWidth+30;
+					if((typeof advCallback === "function" && !ignoreArrow) || typeof prevCallback === "function"){
+						msgBox.height+=15;
+						if(typeof advCallback === "function" && !ignoreArrow){
+							advImage = createImage("arrow_sm_right", x+30, y+textMsg.height+10, 20, 23);
+						}
+						if(typeof prevCallback === "function"){
+							prevImage = createImage("arrow_sm_left", x+5, y+textMsg.height+10, 20, 23);
+						}
+					}
 				}
 				
 				msgBox.graphics.endFill();
@@ -106,17 +143,55 @@
 			theStage.addChild(msgBox); 
 			
 			msgBox.filters = [new GlowFilter(0x222222, .75, 10, 10, 2, 2, false, false)];
-			
 			theStage.addChild(textMsg);
+			
 			if(speakerFace){
 				theStage.addChild(speakerBorder);
 				theStage.addChild(maskObject);
 				theStage.addChild(speakerFace);
 			}
+			if(typeof advCallback === "function"){
+				if(!ignoreArrow){
+					theStage.addChild(advImage);
+					advImage.buttonMode = true;
+					advImage.useHandCursor = true;
+					advImage.addEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+				}
+				msgBox.addEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+				textMsg.addEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+				if(speakerFace){
+					speakerBorder.addEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+					maskObject.addEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+					speakerFace.addEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+				}
+			}
+			if(typeof prevCallback === "function"){
+				theStage.addChild(prevImage);
+				prevImage.buttonMode = true;
+				prevImage.useHandCursor = true;
+				prevImage.addEventListener(MouseEvent.MOUSE_DOWN, prevCallback);
+			}
 			this.theStage = theStage;
 		}
 		
 		public function remove(){
+			if(typeof advCallback === "function"){
+				if(!ignoreArrow){
+					advImage.removeEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+					theStage.removeChild(advImage);
+				}
+				msgBox.removeEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+				textMsg.removeEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+				if(speakerFace){
+					speakerBorder.removeEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+					maskObject.removeEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+					speakerFace.removeEventListener(MouseEvent.MOUSE_DOWN, advCallback);
+				}
+			}
+			if(typeof prevCallback === "function"){
+				prevImage.removeEventListener(MouseEvent.MOUSE_DOWN, prevCallback);
+				theStage.removeChild(prevImage);
+			}
 			theStage.removeChild(msgBox);
 			if(speakerFace){
 				theStage.removeChild(maskObject);

@@ -7,18 +7,20 @@ import flash.geom.Point;
 	var syringeMarks = new MovieClip();
 	syringeMarks.x = 0;
 	syringeMarks.y = 0;
-	addChild(syringeMarks);
+	stage.addChild(syringeMarks);
 	syringeMarks.graphics.lineStyle(5, 0xFF0000);
-	
+	trace(this);
 	var pOutline =  addImage("markerOutline", mX-10, mY-12);
 	pOutline.alpha = .0;
 	var pSyringeArm = new needleHand();
 	pSyringeArm.y = HEIGHT;
-	addChild(pSyringeArm);
+	stage.addChild(pSyringeArm);
+	
 	pSyringeArm.gotoAndStop(0);
 	
 	toolbox.bringForward();
-	stage.setChildIndex(stage.getChildByName(tbi.userLine.name), 0);
+	
+	//stage.setChildIndex(stage.getChildByName(tbi.userLine.name), 1);
 	
 	var mousePos = {x: WIDTH, y: HEIGHT};
 	var surgeonDialog = function(callback){

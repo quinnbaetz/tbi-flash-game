@@ -26,7 +26,8 @@ import flash.geom.Point;
 		var messages = new Array("Careful! There’s no room for error, make your incision marks as accurate as possible.");
 		var msgBox = displayMessages(messages, 50, 60, callback, false, "surgeonFace");
 		setTimeout(function(){
-			createTween(msgBox.msg, "alpha", None.easeInOut, 0, -1, 100, function(){
+			trace("Message box fading");
+			createTween(msgBox, "alpha", None.easeInOut, 0.01, -1, 100, function(){
 				msgBox.advance();		
 			});   
 		}, 1000);

@@ -151,22 +151,32 @@
 		import fl.transitions.TweenEvent;
 		var tweens:Array = new Array();
 		function createTween(obj:Object, prop:String, type, endVal, startVal = -1, numFrames = 10, callBack:Function = null, useTime:Boolean = false):Tween{
+			obj[prop] = endVal;
+			return;
 			if(startVal == -1){
 				startVal = obj[prop];
 			}
 			
 			var tempTween:Tween = new Tween(obj, prop, type, startVal, endVal, numFrames, useTime);
 			tweens.push(tempTween);
-			tempTween.addEventListener(TweenEvent.MOTION_FINISH, tweenEnd);
 			
-			function tweenEnd(e:TweenEvent):void{
+			var tweenEnd = function(e:TweenEvent):void{
 				tempTween.removeEventListener(TweenEvent.MOTION_FINISH, tweenEnd);
 				tweens.splice(tweens.indexOf(e.target), 1);
 				obj[prop] = endVal;
-				if(callBack!=null)
+				if(callBack!=null){
 					callBack(e);
-			
+					e = null;
+				}
+				tempTween = null;
+				obj = null;
+				callback = null;
+				tweenEnd = null;
 			}
+			
+			tempTween.addEventListener(TweenEvent.MOTION_FINISH, tweenEnd);
+			
+			
 			
 			return tempTween;
 		}

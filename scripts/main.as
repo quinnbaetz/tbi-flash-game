@@ -69,7 +69,7 @@ stage.addEventListener(Event.ENTER_FRAME, function(){
 		switch(lastFrame){
 			case 1:
 				gotoAndStop(1);
-				timeline=106;
+				timeline=103;
 				gotoAndStop(14);
 				break;
 			case 2:

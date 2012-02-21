@@ -11,7 +11,7 @@
                     <Matrix tx="0.3" ty="0.3"/>
                   </matrix>
                 </DOMBitmapInstance>
-                <DOMDynamicText width="303" height="23.25" lineType="multiline">
+                <DOMDynamicText width="303" height="24" lineType="multiline">
                   <matrix>
                     <Matrix tx="2" ty="35.3"/>
                   </matrix>
@@ -41,7 +41,7 @@
                     <Matrix tx="0.3" ty="0.3"/>
                   </matrix>
                 </DOMBitmapInstance>
-                <DOMDynamicText width="303" height="23.25" lineType="multiline">
+                <DOMDynamicText width="303" height="24" lineType="multiline">
                   <matrix>
                     <Matrix tx="2" ty="35.3"/>
                   </matrix>
@@ -76,7 +76,7 @@
                     <Matrix tx="0.3" ty="0.3"/>
                   </matrix>
                 </DOMBitmapInstance>
-                <DOMDynamicText width="303" height="23.25" lineType="multiline">
+                <DOMDynamicText width="303" height="24" lineType="multiline">
                   <matrix>
                     <Matrix tx="2" ty="35.3"/>
                   </matrix>
@@ -106,7 +106,7 @@
                     <Matrix tx="0.3" ty="0.3"/>
                   </matrix>
                 </DOMBitmapInstance>
-                <DOMDynamicText width="303" height="23.25" lineType="multiline">
+                <DOMDynamicText width="303" height="24" lineType="multiline">
                   <matrix>
                     <Matrix tx="2" ty="35.3"/>
                   </matrix>
